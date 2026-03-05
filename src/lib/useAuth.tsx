@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
@@ -42,11 +42,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     return (
-        <AuthContext.Provider value= {{ user, loading, logout, checkAuth }
-}>
-    { children }
-    </AuthContext.Provider>
-  );
+        <AuthContext.Provider value={{ user, loading, logout, checkAuth }}>
+            {children}
+        </AuthContext.Provider>
+    );
 }
 
 export function useAuth() {
