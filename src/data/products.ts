@@ -1,6 +1,7 @@
 import { Product } from '../types';
 
 export const products: Product[] = [
+  // SOLAR SECTION
   {
     id: 'solar-1',
     name: '1.5kVA 12V Solar Inverter',
@@ -80,68 +81,128 @@ export const products: Product[] = [
     seo_description: 'The definitive solution for large properties in Abuja. Heavy duty, reliable, and authority-backed.'
   },
   {
-    id: 'gate-1',
-    name: 'D10 Turbo SMΔRT Gate Motor',
-    description: 'Unrivalled Speed, SMΔRT Control – The Pinnacle of Gate Automation. Application: Residential',
-    price: 'Get Quote',
-    image: 'https://i.postimg.cc/CLqP2YQV/swing-turnstile.jpg',
-    category: 'gate-automation',
+    id: 'solar-7',
+    name: '8kVA 48V Hybrid Solar Inverter',
+    description: 'Advanced energy storage and backup for large villas.',
+    price: '4099999.99',
+    image: 'https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg',
+    category: 'solar',
     availability: 'in-stock',
-    slug: 'd10-turbo-smart-gate-motor',
-    meta_title: 'D10 Turbo SMΔRT Gate Motor | Linos Gate Automation',
-    meta_description: 'Experience speed and safety. D10 Turbo gate motors offer SMΔRT control and unrivalled reliability for Abuja homes.',
-    seo_description: 'High-speed gate automation system with mobile integration. Secure your entrance with Linos authority.'
+    slug: '8kva-48v-hybrid-solar-inverter',
+    meta_title: '8KVA 48V Hybrid Solar Inverter | Abuja Premium Power',
+    meta_description: 'Luxury power for luxury homes. 8KVA hybrid systems with intelligent load management.',
+    seo_description: 'Customized for Abuja’s Maitama and Asokoro estates.'
   },
   {
-    id: 'access-1',
-    name: 'Hikvision DS-K1T804AMF Terminal',
-    description: 'Multifunctional Terminal with Fingerprint Recognition, Card Reading, and Face Detection.',
-    price: '120000',
-    image: 'https://i.postimg.cc/kX3zqB8X/face-recognition.jpg',
-    category: 'access-control',
+    id: 'cor-solar-1',
+    name: '10kVA Commercial Solar System',
+    description: 'Power your business with autonomous solar energy solutions.',
+    price: 'Get Quote',
+    image: 'https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg',
+    category: 'solar',
     availability: 'in-stock',
-    slug: 'hikvision-ds-k1t804amf',
-    meta_title: 'Hikvision Face & Fingerprint Terminal | Abuja Access Control',
-    meta_description: 'Elite biometric terminal for high-security environments. DS-K1T804AMF provides speed and accuracy for staff attendance.',
-    seo_description: 'Professional biometric access control system with cloud integration and robust facial recognition.'
+    slug: '10kva-commercial-solar-system',
+    meta_title: '10kVA Commercial Solar | Linos Corporate Power',
+    meta_description: 'Reliable commercial energy solutions. 10kVA installations with zero downtime.',
+    seo_description: 'Industrial-grade solar infrastructure for businesses.'
   },
+  {
+    id: 'cor-solar-2',
+    name: '15kVA Industrial Solar System',
+    description: 'Large-scale energy for commercial complexes and data centers.',
+    price: 'Get Quote',
+    image: 'https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg',
+    category: 'solar',
+    availability: 'in-stock',
+    slug: '15kva-industrial-solar-system',
+    meta_title: '15kVA Industrial Solar System | Abuja Energy Authority',
+    meta_description: 'Massive autonomous power. 15kVA industrial solutions for reliable server and office operations.',
+    seo_description: 'High-capacity energy independence for Nigeria’s corporate world.'
+  },
+
+  // CCTV SECTION
   {
     id: 'cctv-1',
-    name: '1 Channel CCTV System',
-    description: 'Ideal for shops and offices. Monitor your property using your mobile phone via WiFi.',
+    name: '1 Channel Smart CCTV System',
+    description: 'Perfect for small shops and home monitoring via WiFi.',
     price: '105000',
     image: 'https://i.postimg.cc/c1k3qn8c/cctv-installation-sale-repairs-company-in-port-harcourt-owerri-uyo-eket-umuahia-aba-droplets-cctv-so.jpg',
     category: 'cctv',
     availability: 'in-stock',
     slug: '1-channel-cctv-system',
     meta_title: '1 Channel WiFi CCTV System | Smart Abuja Surveillance',
-    meta_description: 'Monitor your property anywhere in the world. Affordable, high-quality WiFi camera for shops and apartments.',
-    seo_description: 'Compact and efficient surveillance system with mobile app access and night vision capabilities.'
+    meta_description: 'Remote monitoring from your phone. 4K smart WiFi surveillance for luxury apartments.',
+    seo_description: 'Reliable and affordable CCTV for basic property protection.'
   },
   {
-    id: 'solar-install-1',
-    name: '1kVA 12V Solar Install',
-    description: 'Entry-level professional solar installation for small setups.',
-    price: 'Get Quote',
-    image: 'https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg',
-    category: 'solar',
+    id: 'cctv-2',
+    name: '4 Channel Ultra 4K CCTV Kit',
+    description: 'Complete security coverage for residential properties.',
+    price: '245000',
+    image: 'https://i.postimg.cc/MHBfbsK5/cctv-installation-sale-repairs-company-in-port-harcourt-owerri-uyo-eket-umuahia-aba-droplets-cctv-so.jpg',
+    category: 'cctv',
     availability: 'in-stock',
-    slug: '1kva-12v-1kva-12v',
-    meta_title: '1kVA 12V Solar Installation | Reliable Abuja Energy',
-    meta_description: 'Reliable entry-level solar. Get professional installation for your 1kVA 12V setup in Abuja.',
-    seo_description: 'Affordable and reliable power backup for basic lighting and electronics.'
+    slug: '4-channel-4k-cctv-kit',
+    meta_title: '4 Channel 4K CCTV System | Comprehensive Abuja Security',
+    meta_description: 'Protect your home with 4 crystal clear 4K cameras. Night vision and motion alerts included.',
+    seo_description: 'Professional-grade surveillance kit for estates and villas.'
+  },
+
+  // ACCESS CONTROL
+  {
+    id: 'access-1',
+    name: 'Face Recognition Biometric Terminal',
+    description: 'Advanced AI facial detection for high-security access.',
+    price: '185000',
+    image: 'https://i.postimg.cc/kX3zqB8X/face-recognition.jpg',
+    category: 'access-control',
+    availability: 'in-stock',
+    slug: 'face-recognition-terminal',
+    meta_title: 'AI Face Recognition Terminal | Linos Access Authority',
+    meta_description: 'Zero-touch biometric access. 99.9% accuracy with infrared detection.',
+    seo_description: 'Modern access control for secure Abuja offices.'
   },
   {
-    id: 'cor-solar-1',
-    name: '10kVA Cor Solar Install',
-    description: 'Commercial grade solar solution for large scale applications.',
+    id: 'turnstile-1',
+    name: 'Swing Barrier Turnstile',
+    description: 'Elegant pedestrian access management for corporate lobbies.',
     price: 'Get Quote',
-    image: 'https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg',
-    category: 'solar',
+    image: 'https://i.postimg.cc/CLqP2YQV/swing-turnstile.jpg',
+    category: 'access-control',
     availability: 'in-stock',
-    slug: '10kva-con-10kva-con',
-    meta_title: '10kVA Commercial Solar System | Linos Authority',
-    meta_description: 'Power your business autonomously. 10kVA commercial solar systems with industrial grade components.',
-    seo_description: 'High-capacity energy independence for offices and commercial complexes in Abuja.'
+    slug: 'swing-barrier-turnstile',
+    meta_title: 'Swing Barrier Turnstile | Luxury Access Management',
+    meta_description: 'High-speed pedestrian control with glass barriers. RFID and biometric integration.',
+    seo_description: 'Architectural access control for premium Abuja buildings.'
+  },
+
+  // GATE AUTOMATION
+  {
+    id: 'gate-1',
+    name: 'D10 Turbo SMΔRT Gate Motor',
+    description: 'Unrivalled Speed, SMΔRT Control – The Pinnacle of Gate Automation.',
+    price: 'Get Quote',
+    image: 'https://i.postimg.cc/CLqP2YQV/swing-turnstile.jpg',
+    category: 'gate-automation',
+    availability: 'in-stock',
+    slug: 'd10-turbo-smart-gate-motor',
+    meta_title: 'D10 Turbo SMΔRT Gate Motor | Linos Gate Automation',
+    meta_description: 'Smart gate motors for modern homes. Remote control and safety features.',
+    seo_description: 'The ultimate gate automation solution for security-conscious owners.'
+  },
+
+  // ESTATE SECURITY
+  {
+    id: 'estate-1',
+    name: 'Estate Management Security Suite',
+    description: 'Comprehensive software and hardware for gatehouse management.',
+    price: 'Get Quote',
+    image: 'https://i.postimg.cc/3rbV6trN/estate-security.jpg',
+    category: 'estate-security',
+    availability: 'in-stock',
+    slug: 'estate-management-security-suite',
+    meta_title: 'Estate Management Security | Abuja Housing Authority',
+    meta_description: 'Complete security ecosystem for estates. Tracking visitors and resident access.',
+    seo_description: 'Cloud-based security management for gated communities.'
   }
 ];

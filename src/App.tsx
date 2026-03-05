@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
 import ProductDetails from './pages/ProductDetails';
 import Contact from './pages/Contact';
+import About from './pages/About';
 
 // New Blog & Admin Pages
 import BlogHome from './pages/BlogHome';
@@ -50,7 +51,7 @@ export default function App() {
           <Route path="/category/:categorySlug" element={<PageWrapper><CategoryPage /></PageWrapper>} />
           <Route path="/product/:slug" element={<PageWrapper><ProductDetails /></PageWrapper>} />
           <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-          <Route path="/about" element={<PageWrapper><div className="pt-40 pb-20 text-center"><h1 className="text-4xl font-bold font-display">About Linos E’ Security</h1><p className="mt-4 text-gray-500 max-w-2xl mx-auto">Providing high-performance security and power automation for the elite Abuja lifestyle. From hybrid solar systems to intelligent gate motors.</p></div></PageWrapper>} />
+          <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
 
           <Route path="/blog" element={<PageWrapper><BlogHome /></PageWrapper>} />
           <Route path="/blog/:slug" element={<PageWrapper><BlogPost /></PageWrapper>} />
