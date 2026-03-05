@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", sans-serif;
+  
+  --color-primary: #0B1F3A;
+  --color-accent: #D4AF37;
+  --color-accent-hover: #B8962E;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-primary bg-white;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+  }
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+}
+
+.btn-primary {
+  @apply bg-accent hover:bg-accent-hover text-primary font-bold py-3 px-8 rounded-lg transition-all transform hover:-translate-y-1 shadow-md hover:shadow-lg;
+}
+
+.btn-outline {
+  @apply border-2 border-accent text-accent hover:bg-accent hover:text-primary font-bold py-3 px-8 rounded-lg transition-all;
+}
