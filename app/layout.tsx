@@ -1,0 +1,45 @@
+import type { Metadata } from "next";
+import { Montserrat, Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Linos E Security | Nigeria's Trusted Security Automation Installers",
+  description: "Elite security installation services in Abuja, Lagos, and Port Harcourt. CCTV, Access Control, Solar Power, and Gate Automation.",
+  icons: {
+    icon: '/logo.png',
+  }
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${montserrat.variable} ${inter.variable} antialiased`}
+      >
+        <Navbar />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </body>
+    </html>
+  );
+}

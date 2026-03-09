@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-linos-gold: #D4AF37;
+  --color-linos-black: #0A0A0A;
+  --color-linos-bronze: #3D2B1F;
+  --color-linos-cream: #F5F5ED;
+  
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-linos-black text-linos-cream font-body antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold uppercase tracking-wider;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-linos-gold text-linos-black px-8 py-4 rounded-sm font-bold uppercase tracking-widest transition-all hover:bg-white hover:scale-105 active:scale-95;
+  }
+  
+  .btn-outline {
+    @apply border border-linos-gold text-linos-gold px-8 py-4 rounded-sm font-bold uppercase tracking-widest transition-all hover:bg-linos-gold hover:text-linos-black;
+  }
+  
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+}
