@@ -1,0 +1,162 @@
+{
+    "store": "Linos E Security Ltd",
+    "currency": "NGN",
+    "products": [
+        {
+            "name": "Integrated Homes Gadget Pack: 1.5kva 12v Solar Inverter",
+            "slug": "integrated-homes-1-5kva-solar-inverter",
+            "category": "Solar Power",
+            "price": 789000,
+            "image": "https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg",
+            "description": "This essential solar power pack includes a 1.5kVA 12V inverter designed to keep lights, fans, phones and laptops running during outages.",
+            "seo": {
+                "meta_title": "Integrated Homes 1.5kVA Solar Inverter Pack Price in Nigeria",
+                "meta_description": "Shop the Integrated Homes 1.5kVA 12V Solar Inverter Pack in Nigeria with installation from Linos E Security."
+            },
+            "whatsapp": "https://wa.me/2348069423078?text=Hello%20I%20want%20to%20order%20the%20Integrated%20Homes%201.5kva%20Solar%20Inverter"
+        },
+        {
+            "name": "Family Power Security Pack 2.5kva Solar Inverter",
+            "slug": "family-power-2-5kva-solar-inverter",
+            "category": "Solar Power",
+            "price": 980000,
+            "image": "https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg",
+            "description": "A 2.5kVA 12V solar inverter system capable of powering lights, TVs, fans and decoders simultaneously.",
+            "seo": {
+                "meta_title": "Family Power 2.5kVA Solar Inverter Price Nigeria",
+                "meta_description": "Reliable 2.5kVA solar inverter system for Nigerian homes with professional installation."
+            },
+            "whatsapp": "https://wa.me/2348069423078?text=Hello%20I%20want%20to%20order%20the%20Family%20Power%202.5kva%20Solar%20Inverter"
+        },
+        {
+            "name": "Essential Premium Power Pack 3.5kva Hybrid Solar Inverter",
+            "slug": "essential-3-5kva-48v-hybrid-inverter",
+            "category": "Solar Power",
+            "price": 1320000,
+            "image": "https://i.postimg.cc/D0BZZqRk/family_solarpanel_scaled.jpg",
+            "description": "3.5kVA hybrid solar inverter designed for powering fridges, TVs and heavy appliances with intelligent energy management.",
+            "seo": {
+                "meta_title": "3.5kVA Hybrid Solar Inverter Price Nigeria",
+                "meta_description": "Efficient hybrid solar inverter with battery and grid integration for homes."
+            },
+            "whatsapp": "https://wa.me/2348069423078?text=Hello%20I%20want%20to%20order%20the%203.5kva%20Hybrid%20Solar%20Inverter"
+        },
+        {
+            "name": "Super Home Premium 5kva Hybrid Solar Inverter",
+            "slug": "super-home-5kva-48v-hybrid-inverter",
+            "category": "Solar Power",
+            "price": 4439500,
+            "image": "https://i.postimg.cc/Jz69jvpM/1_5KWzhutu2_800_800.jpg",
+            "description": "High capacity hybrid inverter capable of powering ACs, pumps and full household appliances.",
+            "seo": {
+                "meta_title": "5kVA Hybrid Solar Inverter Price Nigeria",
+                "meta_description": "Whole-home hybrid solar inverter solution for uninterrupted power."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "Classic Business 7.5kva Hybrid Solar Inverter",
+            "slug": "classic-business-7-5kva-48v-hybrid-inverter",
+            "category": "Solar Power",
+            "price": 6899999.99,
+            "image": "https://i.postimg.cc/5ygPbQGJ/15kva_setup.jpg",
+            "description": "Commercial grade hybrid solar inverter for businesses requiring reliable power for multiple systems.",
+            "seo": {
+                "meta_title": "7.5kVA Hybrid Solar Inverter for Business Nigeria",
+                "meta_description": "Commercial solar inverter system for offices and business operations."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "Super Business 10kva Hybrid Solar Inverter",
+            "slug": "super-business-10kva-48v-hybrid-inverter",
+            "category": "Solar Power",
+            "price": 8499000,
+            "image": "https://i.postimg.cc/m2FRZbjL/Cworth_batteries.jpg",
+            "description": "High capacity solar inverter designed for industrial and commercial applications.",
+            "seo": {
+                "meta_title": "10kVA Hybrid Solar Inverter Price Nigeria",
+                "meta_description": "Industrial solar inverter system for large power requirements."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "D10 Turbo Smart Gate Opener",
+            "slug": "d10-turbo-smart-gate-opener",
+            "category": "Gate Automation",
+            "price": "Get Quote",
+            "image": "https://i.postimg.cc/763Hgbcn/d3-smart-gate-machine.jpg",
+            "description": "High speed smart gate motor for residential sliding gates with remote control automation.",
+            "seo": {
+                "meta_title": "D10 Turbo Smart Gate Opener Price Nigeria",
+                "meta_description": "Automated sliding gate motor with smart remote operation."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "Fixed Security Bollards",
+            "slug": "fixed-security-bollards",
+            "category": "Vehicle Access Control",
+            "price": "Get Quote",
+            "image": "https://i.postimg.cc/3wXHQmS1/bollards.jpg",
+            "description": "Heavy duty steel security bollards for vehicle restriction and perimeter protection.",
+            "seo": {
+                "meta_title": "Security Bollards Installation Nigeria",
+                "meta_description": "Vehicle restriction bollards for security and perimeter protection."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "V380 Standalone WiFi Camera",
+            "slug": "v380-standalone-wifi-camera",
+            "category": "CCTV",
+            "price": 105000,
+            "image": "https://i.postimg.cc/nrbRBh7H/G3_Hikvision_4k_8mp_Ip_Camera_Colorvu_Ds_2cd2387g3_li2uy_Acusense_3_0_Dual_Mic.jpg",
+            "description": "Standalone WiFi security camera for remote monitoring using a smartphone.",
+            "seo": {
+                "meta_title": "V380 WiFi CCTV Camera Price Nigeria",
+                "meta_description": "Affordable WiFi CCTV camera with remote monitoring."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "Triple Lens 4G Solar Camera",
+            "slug": "v380-triple-lens-4g-solar-camera",
+            "category": "CCTV",
+            "price": 130000,
+            "image": "https://i.postimg.cc/B6F46Rnm/dual-lens.jpg",
+            "description": "4G solar powered CCTV camera with triple lens monitoring and human detection.",
+            "seo": {
+                "meta_title": "Triple Lens 4G Solar CCTV Camera Nigeria",
+                "meta_description": "Solar powered security camera with remote monitoring."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "Dual Lens 4G Solar PTZ Camera",
+            "slug": "v380-dual-lens-4g-solar-ptz",
+            "category": "CCTV",
+            "price": 120000,
+            "image": "https://i.postimg.cc/B6F46Rnm/dual-lens.jpg",
+            "description": "Solar powered PTZ CCTV camera with dual lens for wide coverage.",
+            "seo": {
+                "meta_title": "Dual Lens Solar CCTV Camera Nigeria",
+                "meta_description": "PTZ solar CCTV camera for remote surveillance."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        },
+        {
+            "name": "Basic 8 Channel CCTV System with Installation",
+            "slug": "basic-8ch-cctv-system",
+            "category": "CCTV",
+            "price": 420000,
+            "image": "https://i.postimg.cc/L69FKJL3/droplets-cctv-installaton-in-port-harcourt-ip-cameras-hikvision-cameras-8-channel-CCTV-system-plus-i.jpg",
+            "description": "Complete CCTV security kit including DVR and eight cameras for home or office security.",
+            "seo": {
+                "meta_title": "8 Channel CCTV System Installation Nigeria",
+                "meta_description": "Complete CCTV system package with installation."
+            },
+            "whatsapp": "https://wa.me/2348069423078"
+        }
+    ]
+}

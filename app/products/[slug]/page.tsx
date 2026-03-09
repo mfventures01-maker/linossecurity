@@ -1,18 +1,51 @@
-"use client";
-
-import React from 'react';
-import { useParams, notFound } from 'next/navigation';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShieldCheck, MessageCircle, ArrowRight, Zap, CheckCircle2, Package, Clock, Shield } from 'lucide-react';
-import { getProductBySlug } from '@/lib/products';
+import { MessageCircle, ShieldCheck, Zap, ArrowRight, Package, Clock, Shield } from 'lucide-react';
+import { getProductBySlug, getAllProducts } from '@/lib/products';
 import { BUSINESS_DETAILS, WHATSAPP_LINKS } from '@/config/business';
 import JsonLd, { generateProductSchema, generateBreadcrumbSchema } from '@/components/SEO/JsonLd';
 
-export default function ProductDetail() {
-    const params = useParams();
-    const slug = params.slug as string;
-    const product = getProductBySlug(slug);
+interface Props {
+    params: { slug: string };
+}
+
+export async function generateStaticParams() {
+    const products = getAllProducts();
+    return products.map((product) => ({
+        slug: product.slug,
+    }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const product = getProductBySlug(params.slug);
+
+    if (!product) {
+        return {
+            title: 'Product Not Found | Linos E Security',
+        };
+    }
+
+    return {
+        title: product.seo.meta_title,
+        description: product.seo.meta_description,
+        openGraph: {
+            title: product.seo.meta_title,
+            description: product.seo.meta_description,
+            images: [product.image],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: product.seo.meta_title,
+            description: product.seo.meta_description,
+            images: [product.image],
+        },
+    };
+}
+
+export default function ProductPage({ params }: Props) {
+    const product = getProductBySlug(params.slug);
 
     if (!product) {
         notFound();
@@ -21,13 +54,16 @@ export default function ProductDetail() {
     const breadcrumbs = [
         { name: 'Home', url: BUSINESS_DETAILS.website },
         { name: 'Shop', url: `${BUSINESS_DETAILS.website}/shop` },
-        { name: product.name, url: `${BUSINESS_DETAILS.website}/product/${slug}` }
+        { name: product.name, url: `${BUSINESS_DETAILS.website}/products/${product.slug}` }
     ];
 
-    const productSchema = generateProductSchema(product, BUSINESS_DETAILS);
+    const productSchema = generateProductSchema(product as any, BUSINESS_DETAILS);
+    const whatsappUrl = product.whatsapp.startsWith('http')
+        ? product.whatsapp
+        : WHATSAPP_LINKS.orderMessage(product.name);
 
     return (
-        <div className="bg-linos-black pt-40 pb-20">
+        <div className="bg-linos-black pt-40 pb-20 min-h-screen">
             <JsonLd data={productSchema} />
             <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
 
@@ -37,22 +73,22 @@ export default function ProductDetail() {
                     <div className="space-y-6">
                         <div className="relative aspect-square border border-white/10 p-2 group overflow-hidden">
                             <div className="w-full h-full border border-linos-gold/20 bg-white/[0.02] relative overflow-hidden">
-                                <img
+                                <Image
                                     src={product.image}
                                     alt={product.name}
-                                    className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                                    fill
+                                    className="object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                                    priority
                                 />
                                 <div className="absolute top-6 left-6 flex space-x-2">
                                     <span className="bg-linos-gold text-linos-black text-[8px] font-bold px-3 py-1 uppercase tracking-tighter">Certified Asset</span>
-                                    {product.availability === 'in-stock' && (
-                                        <span className="bg-white text-linos-black text-[8px] font-bold px-3 py-1 uppercase tracking-tighter">In Stock</span>
-                                    )}
+                                    <span className="bg-white text-linos-black text-[8px] font-bold px-3 py-1 uppercase tracking-tighter">In Stock</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Technical Badges */}
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-3 gap-4 font-display">
                             {[
                                 { icon: Shield, label: 'Secured' },
                                 { icon: Package, label: 'Authentic' },
@@ -81,7 +117,7 @@ export default function ProductDetail() {
                             </p>
                             <div className="text-3xl font-display font-bold text-white">
                                 {product.price === 'Get Quote' ? (
-                                    <span className="text-linos-gold">PRICE ON REQUEST</span>
+                                    <span className="text-linos-gold uppercase tracking-tighter">Price on Request</span>
                                 ) : (
                                     <>₦{Number(product.price).toLocaleString()}</>
                                 )}
@@ -90,40 +126,41 @@ export default function ProductDetail() {
 
                         <div className="grid grid-cols-2 gap-8 border-y border-white/5 py-10">
                             <div>
-                                <h4 className="text-white font-bold uppercase tracking-widest text-[10px] mb-4">Deployment Status</h4>
-                                <span className="text-green-500 font-bold uppercase tracking-widest text-xs flex items-center">
-                                    <CheckCircle2 className="w-3 h-3 mr-2" /> Authorized Hub Ready
-                                </span>
+                                <h4 className="text-white font-bold uppercase tracking-widest text-[10px] mb-4 font-display">Deployment Status</h4>
+                                <div className="text-green-500 font-bold uppercase tracking-widest text-xs flex items-center">
+                                    <div className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+                                    Authorized Hub Ready
+                                </div>
                             </div>
                             <div>
-                                <h4 className="text-white font-bold uppercase tracking-widest text-[10px] mb-4">Technical Warranty</h4>
-                                <span className="text-linos-gold font-bold uppercase tracking-widest text-xs flex items-center">
+                                <h4 className="text-white font-bold uppercase tracking-widest text-[10px] mb-4 font-display">Technical Warranty</h4>
+                                <div className="text-linos-gold font-bold uppercase tracking-widest text-xs flex items-center">
                                     <ShieldCheck className="w-3 h-3 mr-2" /> 24-Month Authority
-                                </span>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             <a
-                                href={WHATSAPP_LINKS.orderMessage(product.name)}
+                                href={whatsappUrl}
                                 className="w-full btn-gold !py-6 flex items-center justify-center space-x-4 group"
                             >
                                 <span className="uppercase tracking-[0.2em] font-bold">Order via WhatsApp</span>
                                 <MessageCircle className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                             </a>
                             <Link
-                                href="/contact"
-                                className="w-full btn-outline !py-6 flex items-center justify-center space-x-4"
+                                href="/installation"
+                                className="w-full btn-outline !py-6 flex items-center justify-center space-x-4 group"
                             >
-                                <span className="uppercase tracking-[0.2em] font-bold italic">Request Technical Audit</span>
-                                <ArrowRight className="w-5 h-5" />
+                                <span className="uppercase tracking-[0.2em] font-bold italic">Request Professional Installation</span>
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
 
                         {/* Specification Table */}
                         <div className="pt-10">
-                            <h4 className="text-white font-bold uppercase tracking-widest text-[10px] mb-8 border-l-2 border-linos-gold pl-4 italic">Technical Architecture</h4>
-                            <div className="space-y-0 text-[10px] uppercase font-bold tracking-widest">
+                            <h4 className="text-white font-bold uppercase tracking-widest text-[10px] mb-8 border-l-2 border-linos-gold pl-4 italic font-display">Technical Architecture</h4>
+                            <div className="space-y-0 text-[10px] uppercase font-bold tracking-[0.2em]">
                                 {[
                                     { label: 'Asset Reliability', value: 'High-Impact Industrial' },
                                     { label: 'Integration Level', value: 'Cloud-Encrypted Relay' },
@@ -139,20 +176,7 @@ export default function ProductDetail() {
                         </div>
                     </div>
                 </div>
-
-                {/* Related Strategy */}
-                <div className="mt-32 p-12 bg-linos-gold/[0.02] border border-white/5 text-center">
-                    <h3 className="text-xl font-display font-bold text-white mb-6 uppercase tracking-widest">Security Configuration Advice</h3>
-                    <p className="text-white/40 text-sm max-w-2xl mx-auto italic mb-10 leading-relaxed">
-                        This hardware asset is part of our modular security ecosystem. For maximum dominance, we recommend integrating this with our centralized monitoring station protocol.
-                    </p>
-                    <Link href="/services" className="text-linos-gold text-[10px] font-bold uppercase tracking-widest hover:tracking-[0.4em] transition-all">
-                        View Full System Architecture →
-                    </Link>
-                </div>
             </div>
         </div>
     );
 }
-
-

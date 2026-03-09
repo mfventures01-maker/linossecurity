@@ -143,6 +143,54 @@ export default function Home() {
 
       <SecurityConfigurator />
 
+      {/* Blog Intelligence Section */}
+      <section className="py-32 bg-[#050505] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20 space-y-6">
+            <div className="flex justify-center items-center space-x-2">
+              <Shield className="w-4 h-4 text-linos-gold" />
+              <span className="text-[10px] text-white/40 font-bold uppercase tracking-[0.4em]">Expert Intelligence Hub</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white uppercase tracking-tight">Technical <span className="text-linos-gold italic underline decoration-white/10">Insights</span>.</h2>
+            <p className="text-white/30 max-w-2xl mx-auto text-xs font-bold uppercase tracking-[0.2em] leading-relaxed">Stay updated with the latest in security automation, energy autonomy, and facility management.</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              { name: 'Surveillance AI', href: '/category/cctv' },
+              { name: 'Access Mastery', href: '/category/access-control' },
+              { name: 'Energy Autonomy', href: '/category/solar-power' },
+              { name: 'Gate Protocols', href: '/category/gate-automation' },
+              { name: 'Smart Defense', href: '/category/smart-locks' },
+              { name: 'Site Strategy', href: '/blog' },
+            ].map((topic, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Link
+                  href={topic.href}
+                  className="block w-full py-8 border border-white/5 bg-white/[0.02] text-center hover:bg-linos-gold hover:text-linos-black transition-all duration-500 rounded-sm relative group overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] relative z-10 transition-colors duration-500">{topic.name}</span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-20 flex justify-center">
+            <Link href="/blog" className="group flex items-center space-x-4 text-white/30 hover:text-linos-gold transition-colors">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Enter Intelligence Hub</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Conversion Section */}
       <section className="py-32 bg-linos-black relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

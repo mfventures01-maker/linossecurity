@@ -76,9 +76,19 @@ export default function Footer() {
                     <p className="text-white/20 text-xs font-bold uppercase tracking-widest">
                         © 2026 LINOS E SECURITY LIMITED. ALL RIGHTS RESERVED.
                     </p>
-                    <div className="flex items-center space-x-2 text-white/20">
-                        <ShieldCheck className="w-4 h-4 text-linos-gold" />
-                        <span className="text-[10px] uppercase font-bold tracking-widest">Certified Security Infrastructure</span>
+                    <div className="flex items-center space-x-6">
+                        <div className="flex items-center space-x-2 text-white/20">
+                            <ShieldCheck className="w-4 h-4 text-linos-gold" />
+                            <span className="text-[10px] uppercase font-bold tracking-widest">Certified Security Infrastructure</span>
+                        </div>
+
+                        {/* Hidden Admin Login Button (The Eagle) */}
+                        <Link
+                            href="/admin/login"
+                            className="relative w-8 h-8 rounded-full flex items-center justify-center p-1.5 grayscale opacity-20 hover:grayscale-0 hover:opacity-100 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all duration-700 bg-white/5"
+                        >
+                            <Image src="/logo.png" alt="Admin Relay" width={20} height={20} className="object-contain" />
+                        </Link>
                     </div>
                 </div>
             </div>
