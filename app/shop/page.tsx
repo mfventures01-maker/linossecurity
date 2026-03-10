@@ -13,31 +13,11 @@ export default function ShopPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const allProducts = getAllProducts();
 
-    const categories = [
-        'All',
-        'Solar Power Systems',
-        'CCTV Cameras',
-        'Access Control Systems',
-        'Gate Automation',
-        'Turnstile Systems',
-        'Security Barriers',
-        'Smart Door Locks',
-        'Security Hardware'
-    ];
-
-    // Helper to map legacy data categories to new authoritative categories
-    const mapCategory = (legacyCat: string) => {
-        const cat = legacyCat.toLowerCase();
-        if (cat === 'solar power') return 'Solar Power Systems';
-        if (cat === 'cctv') return 'CCTV Cameras';
-        if (cat === 'access-control') return 'Access Control Systems';
-        if (cat === 'gate-automation') return 'Gate Automation';
-        if (cat === 'vehicle access control') return 'Turnstile Systems';
-        return 'Security Hardware';
-    };
+    // Use categories directly from the products
+    const categories = ['All', ...Array.from(new Set(allProducts.map(p => p.category)))].sort();
 
     const filteredProducts = allProducts.filter(p => {
-        const matchesCategory = activeCategory === 'All' || mapCategory(p.category) === activeCategory;
+        const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
         const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
     });

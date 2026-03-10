@@ -13,6 +13,9 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+    const [imgSrc, setImgSrc] = React.useState(product.image);
+    const [imgError, setImgError] = React.useState(false);
+
     const isQuoteOnly = product.price === 'Get Quote';
     const whatsappUrl = product.whatsapp.startsWith('http')
         ? product.whatsapp
@@ -22,13 +25,21 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="group relative bg-white/[0.02] border border-white/5 hover:border-linos-gold/30 transition-all duration-500 overflow-hidden h-full flex flex-col">
             {/* Visual Header */}
             <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                />
+                {!imgError ? (
+                    <Image
+                        src={imgSrc}
+                        alt={product.name}
+                        fill
+                        className="object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        onError={() => setImgError(true)}
+                    />
+                ) : (
+                    <div className="absolute inset-0 bg-linos-black flex items-center justify-center p-12">
+                        <Package className="w-16 h-16 text-linos-gold/20" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-linos-gold/5 to-transparent" />
+                    </div>
+                )}
 
                 {/* Product Tags */}
                 <div className="absolute top-4 left-4 flex flex-col space-y-2">
