@@ -18,18 +18,23 @@ export interface Product {
     brand?: string;
 }
 
+// Global data cache to prevent multiple reads if we use fs (though currently using static import)
+// We maintain the static import for Client Components but add server-side safety checks
+const data = productsData as any;
+
 export const getAllProducts = (): Product[] => {
-    return productsData.products;
+    return data.products || [];
 };
 
 export const getProductBySlug = (slug: string): Product | undefined => {
-    return productsData.products.find((p) => p.slug === slug);
+    return getAllProducts().find((p) => p.slug === slug);
 };
 
 export const getProductsByCategory = (category: string): Product[] => {
-    return productsData.products.filter((p) => p.category.toLowerCase() === category.toLowerCase());
+    return getAllProducts().filter((p) => p.category.toLowerCase() === category.toLowerCase());
 };
 
 export const getCategories = (): string[] => {
-    return Array.from(new Set(productsData.products.map((p) => p.category)));
+    const products = getAllProducts();
+    return Array.from(new Set(products.map((p) => p.category)));
 };
