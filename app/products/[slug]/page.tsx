@@ -27,21 +27,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
     return (
         <div className="min-h-screen bg-linos-black text-white">
-            {/* Header/Navigation */}
-            <header className="bg-linos-black border-b border-white/5 py-4 fixed w-full z-50">
-                <div className="container mx-auto px-4 flex justify-between items-center h-16">
-                    <Link href="/" className="text-white font-bold text-2xl tracking-[0.2em] font-display uppercase">
-                        LINOS E<span className="text-linos-gold">'</span> SECURITY
-                    </Link>
-                    <nav className="hidden md:flex space-x-8">
-                        <Link href="/" className="text-white/40 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-[0.3em]">Home</Link>
-                        <Link href="/shop" className="text-white/40 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-[0.3em]">Products</Link>
-                        <Link href="/services" className="text-white/40 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-[0.3em]">Expertise</Link>
-                        <Link href="/contact" className="text-white/40 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-[0.3em]">Contact</Link>
-                    </nav>
-                </div>
-            </header>
-
             <main className="container mx-auto px-4 pt-32 pb-24">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 

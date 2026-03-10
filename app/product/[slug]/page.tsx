@@ -72,23 +72,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
     return (
         <div className="min-h-screen bg-linos-black text-white">
-            {/* Header/Navigation */}
-            <header className="bg-linos-black border-b border-linos-gold/20 py-4 fixed w-full z-50">
-                <div className="container mx-auto px-4 flex justify-between items-center h-16">
-                    <Link href="/" className="text-linos-gold font-bold text-2xl tracking-[0.2em] font-display">
-                        LINOS E' SECURITY
-                    </Link>
-                    <nav className="hidden md:flex space-x-6">
-                        <Link href="/" className="text-white/60 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-widest">Home</Link>
-                        <Link href="/shop" className="text-white/60 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-widest">Products</Link>
-                        <Link href="/category/solar-power" className="text-white/60 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-widest">Solar</Link>
-                        <Link href="/category/access-control" className="text-white/60 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-widest">Access</Link>
-                        <Link href="/category/cctv" className="text-white/60 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-widest">CCTV</Link>
-                        <Link href="/contact" className="text-white/60 hover:text-linos-gold transition text-[10px] font-bold uppercase tracking-widest">Contact</Link>
-                    </nav>
-                </div>
-            </header>
-
             {/* MAIN PRODUCT CONTENT */}
             <main className="container mx-auto px-4 pt-32 pb-12">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
