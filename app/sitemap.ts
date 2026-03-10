@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
-import { getAllProducts, getCategories, Product } from '@/lib/products';
+import { getAllProducts, getCategories } from '@/lib/products';
+import { Product } from '@/types/product';
 import { BUSINESS_DETAILS } from '@/config/business';
 
 export default function sitemap(): MetadataRoute.Sitemap {

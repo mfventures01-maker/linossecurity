@@ -66,6 +66,7 @@ fs.createReadStream(inputFile)
             whatsapp_cta_link: whatsapp,
             product_slug: slug,
             google_product_category: googleCategory,
+            condition: 'new',
 
             // Legacy compatibility fields
             name: name,

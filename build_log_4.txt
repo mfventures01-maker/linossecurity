@@ -1,0 +1,33 @@
+
+> linos-e-security-website@0.1.0 prebuild
+> node scripts/process_products.js
+
+✅ Successfully processed 33 products to C:\Users\Administrator\Downloads\linos-e-security-website\data\products.json
+
+> linos-e-security-website@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\Administrator\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\Administrator\Downloads\linos-e-security-website\package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 50s
+  Running TypeScript ...
+Failed to compile.
+
+./app/sitemap.ts:2:41
+Type error: Module '"@/lib/products"' declares 'Product' locally, but it is not exported.
+
+[0m [90m 1 |[39m [36mimport[39m { [33mMetadataRoute[39m } [36mfrom[39m [32m'next'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { getAllProducts[33m,[39m getCategories[33m,[39m [33mProduct[39m } [36mfrom[39m [32m'@/lib/products'[39m[33m;[39m
+ [90m   |[39m                                         [31m[1m^[22m[39m
+ [90m 3 |[39m [36mimport[39m { [33mBUSINESS_DETAILS[39m } [36mfrom[39m [32m'@/config/business'[39m[33m;[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m sitemap()[33m:[39m [33mMetadataRoute[39m[33m.[39m[33mSitemap[39m {[0m
+Next.js build worker exited with code: 1 and signal: null

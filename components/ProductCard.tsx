@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MessageCircle, ShieldCheck, ArrowRight, Package } from 'lucide-react';
-import { Product } from '@/lib/products';
+import { Product } from '@/types/product';
 import { WHATSAPP_LINKS } from '@/config/business';
 import Image from 'next/image';
 

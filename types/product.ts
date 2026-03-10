@@ -11,6 +11,8 @@ export interface Product {
     meta_description: string;
     whatsapp_cta_link: string;
     product_slug: string;
+    google_product_category: string;
+    condition: string;
     json_ld_schema: Record<string, any>;
 
     // Legacy compatibility fields
