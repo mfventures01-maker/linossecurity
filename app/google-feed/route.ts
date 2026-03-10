@@ -3,7 +3,13 @@ import { getAllProducts } from '@/lib/products';
 import { BUSINESS_DETAILS } from '@/config/business';
 
 export async function GET() {
+  try {
     const products = getAllProducts();
+
+    if (!products || products.length === 0) {
+      console.error('Google Feed Warning: No products found in the catalog.');
+    }
+
     const baseUrl = BUSINESS_DETAILS.website;
 
     const feed = `<?xml version="1.0"?>
@@ -30,9 +36,16 @@ export async function GET() {
 </rss>`;
 
     return new NextResponse(feed, {
-        headers: {
-            'Content-Type': 'application/xml',
-            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200',
-        },
+      headers: {
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200',
+      },
     });
+  } catch (error) {
+    console.error('Google Feed Protocol Failure:', error);
+    return new NextResponse(
+      `<error>Feed Generation Error: Node Sync Unavailable</error>`,
+      { status: 500, headers: { 'Content-Type': 'application/xml' } }
+    );
+  }
 }

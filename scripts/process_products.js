@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const productsRaw = [
     {
         handle: "integrated-homes-1-5kva-solar-inverter",
@@ -418,4 +421,6 @@ const data = {
     products: finalProducts
 };
 
-console.log(JSON.stringify(data, null, 4));
+const outputPath = path.join(__dirname, '../data/products.json');
+fs.writeFileSync(outputPath, JSON.stringify(data, null, 4), 'utf8');
+console.log(`Successfully wrote ${finalProducts.length} products to ${outputPath}`);
