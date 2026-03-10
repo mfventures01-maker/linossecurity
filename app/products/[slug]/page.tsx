@@ -112,9 +112,16 @@ export default function ProductPage({ params }: Props) {
                             <h1 className="text-4xl md:text-5xl font-display font-bold text-white uppercase leading-tight">
                                 {product.name}
                             </h1>
-                            <p className="text-white/40 text-lg leading-relaxed italic font-light">
-                                {product.description}
-                            </p>
+                            {product.body_html ? (
+                                <div
+                                    className="text-white/40 text-lg leading-relaxed italic font-light prose prose-invert max-w-none"
+                                    dangerouslySetInnerHTML={{ __html: product.body_html }}
+                                />
+                            ) : (
+                                <p className="text-white/40 text-lg leading-relaxed italic font-light">
+                                    {product.description}
+                                </p>
+                            )}
                             <div className="text-3xl font-display font-bold text-white">
                                 {product.price === 'Get Quote' ? (
                                     <span className="text-linos-gold uppercase tracking-tighter">Price on Request</span>

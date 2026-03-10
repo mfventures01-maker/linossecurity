@@ -7,6 +7,7 @@ export interface Product {
     price: number | string;
     image: string;
     description: string;
+    body_html?: string;
     seo: {
         meta_title: string;
         meta_description: string;

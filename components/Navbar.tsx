@@ -42,7 +42,15 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-3 group">
                         <div className="relative w-14 h-14 bg-linos-gold rounded-full flex items-center justify-center p-2 shadow-2xl shadow-linos-gold/40 group-hover:scale-105 transition-all duration-700">
-                            <Image src="/logo.png" alt="Linos Logo" width={40} height={40} className="object-contain" />
+                            <Image
+                                src="/logo.png"
+                                alt="Linos Logo"
+                                width={40}
+                                height={40}
+                                className="object-contain"
+                                priority
+                                unoptimized
+                            />
                             <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-20"></div>
                         </div>
                         <div className="flex flex-col">

@@ -84,7 +84,7 @@ export default function Home() {
             >
               <div className="relative rounded-sm overflow-hidden border border-linos-gold/20 aspect-[4/5] bg-[#0A0A0A] group">
                 <Image
-                  src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1000"
+                  src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=2070&auto=format&fit=crop"
                   alt="Security Integration"
                   fill
                   className="object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
@@ -230,10 +230,10 @@ export default function Home() {
               <div className="aspect-square border border-linos-gold/20 p-4">
                 <div className="w-full h-full border border-linos-gold/40 relative overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=1000"
+                    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop"
                     alt="Linos Execution"
                     fill
-                    className="object-cover grayscale opacity-80"
+                    className="object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-700"
                   />
                 </div>
               </div>
