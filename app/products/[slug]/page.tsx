@@ -1,9 +1,11 @@
-import { Metadata } from 'next';
+"use client";
+
+import React from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MessageCircle, ShieldCheck, Zap, ArrowRight, Package, Clock, Shield } from 'lucide-react';
-import { getProductBySlug, getAllProducts } from '@/lib/products';
+import { getProductBySlug } from '@/lib/products';
 import { BUSINESS_DETAILS, WHATSAPP_LINKS } from '@/config/business';
 import JsonLd, { generateProductSchema, generateBreadcrumbSchema } from '@/components/SEO/JsonLd';
 
@@ -11,41 +13,10 @@ interface Props {
     params: { slug: string };
 }
 
-export async function generateStaticParams() {
-    const products = getAllProducts();
-    return products.map((product) => ({
-        slug: product.slug,
-    }));
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const product = getProductBySlug(params.slug);
-
-    if (!product) {
-        return {
-            title: 'Product Not Found | Linos E Security',
-        };
-    }
-
-    return {
-        title: product.seo.meta_title,
-        description: product.seo.meta_description,
-        openGraph: {
-            title: product.seo.meta_title,
-            description: product.seo.meta_description,
-            images: [product.image],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: product.seo.meta_title,
-            description: product.seo.meta_description,
-            images: [product.image],
-        },
-    };
-}
-
 export default function ProductPage({ params }: Props) {
-    const product = getProductBySlug(params.slug);
+    const { slug } = React.use(params as any) as { slug: string };
+    const product = getProductBySlug(slug);
+    const [imgError, setImgError] = React.useState(false);
 
     if (!product) {
         notFound();
@@ -73,13 +44,21 @@ export default function ProductPage({ params }: Props) {
                     <div className="space-y-6">
                         <div className="relative aspect-square border border-white/10 p-2 group overflow-hidden">
                             <div className="w-full h-full border border-linos-gold/20 bg-white/[0.02] relative overflow-hidden">
-                                <Image
-                                    src={product.image}
-                                    alt={product.name}
-                                    fill
-                                    className="object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                                    priority
-                                />
+                                {!imgError ? (
+                                    <Image
+                                        src={product.image}
+                                        alt={product.name}
+                                        fill
+                                        className="object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                                        priority
+                                        onError={() => setImgError(true)}
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 bg-linos-black flex flex-col items-center justify-center p-20 text-center">
+                                        <Package className="w-24 h-24 text-linos-gold/20 mb-6" />
+                                        <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.4em]">Asset Visualization Relay Offline</span>
+                                    </div>
+                                )}
                                 <div className="absolute top-6 left-6 flex space-x-2">
                                     <span className="bg-linos-gold text-linos-black text-[8px] font-bold px-3 py-1 uppercase tracking-tighter">Certified Asset</span>
                                     <span className="bg-white text-linos-black text-[8px] font-bold px-3 py-1 uppercase tracking-tighter">In Stock</span>
@@ -156,7 +135,7 @@ export default function ProductPage({ params }: Props) {
                                 <MessageCircle className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                             </a>
                             <Link
-                                href="/installation"
+                                href="/contact"
                                 className="w-full btn-outline !py-6 flex items-center justify-center space-x-4 group"
                             >
                                 <span className="uppercase tracking-[0.2em] font-bold italic">Request Professional Installation</span>

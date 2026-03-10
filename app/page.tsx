@@ -157,11 +157,11 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { name: 'Surveillance AI', href: '/category/cctv' },
-              { name: 'Access Mastery', href: '/category/access-control' },
-              { name: 'Energy Autonomy', href: '/category/solar-power' },
+              { name: 'Surveillance AI', href: '/category/cctv-cameras' },
+              { name: 'Access Mastery', href: '/category/access-control-systems' },
+              { name: 'Energy Autonomy', href: '/category/solar-power-systems' },
               { name: 'Gate Protocols', href: '/category/gate-automation' },
-              { name: 'Smart Defense', href: '/category/smart-locks' },
+              { name: 'Smart Defense', href: '/category/smart-door-locks' },
               { name: 'Site Strategy', href: '/blog' },
             ].map((topic, i) => (
               <motion.div

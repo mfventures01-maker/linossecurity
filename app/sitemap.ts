@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const products = getAllProducts();
     const categories = getCategories();
     const cities = ['abuja', 'lagos', 'port-harcourt', 'kano', 'enugu', 'owerri', 'ibadan'];
-    const services = ['cctv-installation', 'access-control-installation', 'solar-power-installation', 'gate-automation', 'turnstile-installation'];
+    const services = ['cctv-installation', 'access-control-installation', 'solar-power-installation', 'automatic-gate-installation', 'turnstile-installation', 'smart-home-installation'];
 
     const productEntries = products.map((product: Product) => ({
         url: `${BUSINESS_DETAILS.website}/products/${product.slug}`,
