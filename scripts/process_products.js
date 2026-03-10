@@ -11,7 +11,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Integrated Homes 1.5kVA Solar Inverter Pack Price in Nigeria | Linos Security",
         seoDesc: "Buy the Integrated Homes 1.5kVA 12V Solar Inverter Pack in Nigeria. Perfect for essential appliances like lights and fans. Durable, efficient, with expert installation. Order now!",
-        category: "Solar Power Systems",
+        category: "Solar Power",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Integrated%20Homes%201.5kva%20Solar%20Inverter%20Pack"
     },
     {
@@ -23,7 +23,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Family Power 2.5kVA Solar Inverter Price in Nigeria | Linos Security",
         seoDesc: "Upgrade to the Family Power Security Pack 2.5kVA 12V Solar Inverter in Nigeria. Run TVs, fans, and lights seamlessly. Get a durable system with professional installation.",
-        category: "Solar Power Systems",
+        category: "Solar Power",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Family%20Power%202.5kva%20Solar%20Inverter%20Pack"
     },
     {
@@ -35,7 +35,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "3.5kVA 48V Hybrid Solar Inverter Price Nigeria | Linos Security",
         seoDesc: "Buy the 3.5kVA 48V Hybrid Solar Inverter in Nigeria. Ideal for powering fridges, freezers, and TVs with intelligent energy management. Durable and efficient. Order today!",
-        category: "Solar Power Systems",
+        category: "Solar Power",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Essential%20Premium%203.5kva%20Hybrid%20Solar%20Inverter"
     },
     {
@@ -47,7 +47,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "5kVA 48V Hybrid Solar Inverter Price Nigeria Super Home | Linos Security",
         seoDesc: "Get the SUPER HOME PREMIUM 5kVA 48V Hybrid Solar Inverter in Nigeria. Power your entire home, including ACs and pumps. High-capacity, durable, with pro installation.",
-        category: "Solar Power Systems",
+        category: "Solar Power",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Super%20Home%205kva%20Hybrid%20Solar%20Inverter%20Pack"
     },
     {
@@ -59,7 +59,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "7.5kVA 48V Hybrid Solar Inverter Price Nigeria Business | Linos Security",
         seoDesc: "Buy the CLASSIC BUSINESS 7.5kVA 48V Hybrid Solar Inverter in Nigeria. Perfect for small businesses to keep ACs and equipment running. Durable & efficient. Order now!",
-        category: "Solar Power Systems",
+        category: "Solar Power",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Classic%20Business%207.5kva%20Hybrid%20Solar%20Inverter"
     },
     {
@@ -71,7 +71,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "10kVA 48V Hybrid Solar Inverter Price Nigeria Super Business | Linos Security",
         seoDesc: "Get the SUPER BUSINESS 10kVA 48V Hybrid Solar Inverter in Nigeria. High-capacity solution for large businesses to ensure non-stop operations. Durable and efficient. Order today!",
-        category: "Solar Power Systems",
+        category: "Solar Power",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Super%20Business%2010kva%20Hybrid%20Solar%20Inverter"
     },
     {
@@ -95,7 +95,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Fixed Security Bollards Price Nigeria Installation | Linos Security",
         seoDesc: "Install high-security fixed bollards in Nigeria to prevent vehicle attacks and protect premises. Durable steel construction for ultimate perimeter security. Get a quote.",
-        category: "Security Barriers",
+        category: "Vehicle Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20the%20Bollard%20Security%20System"
     },
     {
@@ -107,7 +107,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Body Scanners for Security Price Nigeria | Linos Security",
         seoDesc: "Buy advanced body scanners for security screening in Nigeria. Ideal for corporate, government, and event security. Non-intrusive threat detection. Get a quote today!",
-        category: "Access Control Systems",
+        category: "CCTV",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20a%20Body%20Security%20Scanner"
     },
     {
@@ -119,7 +119,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Hikvision DS-K1T804AMF Multifunctional Terminal Price Nigeria | Linos Security",
         seoDesc: "Buy the Hikvision DS-K1T804AMF(O-STD) in Nigeria. A multifunctional terminal with fingerprint, card, and face recognition for access control and attendance. Order now!",
-        category: "Access Control Systems",
+        category: "Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Hikvision%20DS-K1T804AMF%20Access%20Terminal"
     },
     {
@@ -131,7 +131,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Hikvision DS-K2804 Access Control Panel Price Nigeria | Linos Security",
         seoDesc: "Buy the Hikvision DS-K2804 Access Control Panel in Nigeria. Centralized management for card readers and biometrics. Reliable and secure for any facility. Order now!",
-        category: "Access Control Systems",
+        category: "Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20DS-K2804%20Access%20Control%20Panel"
     },
     {
@@ -143,7 +143,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "ZKTeco VF780 Face Palm Reader Price Nigeria | Linos Security",
         seoDesc: "Buy the ZKTeco VF780 Face and Palm Recognition Reader in Nigeria. High-speed, contactless biometric authentication for access control. Secure and hygienic. Order now!",
-        category: "Access Control Systems",
+        category: "Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20ZKTeco%20VF780%20Face%20and%20Palm%20Reader"
     },
     {
@@ -155,7 +155,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "ZKTeco F7-C Fingerprint Reader Price Nigeria | Linos Security",
         seoDesc: "Buy the ZKTeco F7-C Fingerprint Access Control Reader in Nigeria. Durable and reliable with card, fingerprint, and password options. Perfect for any door. Order now!",
-        category: "Access Control Systems",
+        category: "Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20ZKTeco%20F7-C%20Fingerprint%20Reader"
     },
     {
@@ -167,7 +167,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Hikvision DS-K1T343MF Face Recognition Reader Price Nigeria | Linos Security",
         seoDesc: "Buy the Hikvision DS-K1T343MF Face Recognition Access Control in Nigeria. High-security terminal with WDR camera and multi-modal authentication. Perfect for restricted areas.",
-        category: "Access Control Systems",
+        category: "Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Hikvision%20DS-K1T343MF%20Face%20Recognition%20Terminal"
     },
     {
@@ -179,7 +179,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Full Height Turnstile Gate Price Nigeria Installation | Linos Security",
         seoDesc: "Install full-height turnstile gates in Nigeria for high-security entry control. Prevents tailgating, durable construction, ideal for factories and stadiums. Get a quote.",
-        category: "Turnstile Systems",
+        category: "Vehicle Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20a%20Full%20Height%20Turnstile%20Gate"
     },
     {
@@ -191,7 +191,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Swing Turnstile Gate Price Nigeria | Linos Security",
         seoDesc: "Buy elegant swing turnstiles in Nigeria for secure pedestrian flow management. Ideal for corporate lobbies and airports. Aesthetic design with advanced safety. Get a quote.",
-        category: "Turnstile Systems",
+        category: "Vehicle Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20Swing%20Turnstiles"
     },
     {
@@ -203,7 +203,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Estate Management Security Solution Price Nigeria | Linos Security",
         seoDesc: "Get a complete Estate Management Security Solution in Nigeria. Control access, manage visitors, integrate CCTV, and ensure a safe community environment. Get a quote today.",
-        category: "Access Control Systems",
+        category: "Integrated Security",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20the%20Estate%20Management%20Solution"
     },
     {
@@ -215,7 +215,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Centurion Barrier Sector II Price Nigeria | Linos Security",
         seoDesc: "Buy the Centurion Barrier Sector II heavy-duty gate in Nigeria. Reliable and fast operation for high-traffic commercial and industrial access points. Get a quote.",
-        category: "Security Barriers",
+        category: "Vehicle Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20the%20Centurion%20Barrier%20Sector%20II"
     },
     {
@@ -227,7 +227,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Retractable Bollard Price Nigeria | Linos Security",
         seoDesc: "Install retractable bollards in Nigeria for flexible vehicle access control. Automatic or manual operation, durable construction. Perfect for driveways and loading bays. Get a quote.",
-        category: "Security Barriers",
+        category: "Vehicle Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20Retractable%20Bollards"
     },
     {
@@ -239,7 +239,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Tyre Security Spikes Price Nigeria | Linos Security",
         seoDesc: "Buy Tyre Security Spikes (Tire Killers) in Nigeria for directional traffic control. Automatic retraction, weather-resistant, and a strong visual deterrent. Get a quote.",
-        category: "Security Barriers",
+        category: "Vehicle Access Control",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20Tyre%20Security%20Spikes"
     },
     {
@@ -251,7 +251,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "V380 Standalone WiFi Camera Price Nigeria Installation | Linos Security",
         seoDesc: "Buy a Standalone V380 Wi-Fi Camera & Installation in Nigeria starting at ₦30k. Ideal for shops and homes. Remote monitoring via mobile phone. Order now!",
-        category: "CCTV Cameras",
+        category: "CCTV",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Standalone%20Wifi%20Camera%20Installation"
     },
     {
@@ -263,7 +263,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "V380 Triple Lens 4G Solar Camera Price Nigeria | Linos Security",
         seoDesc: "Buy the V380 Triple Lens 4G Solar PTZ Camera in Nigeria. 12MP, human tracking, color night vision, no Wi-Fi needed. Perfect for remote monitoring. Order now!",
-        category: "CCTV Cameras",
+        category: "CCTV",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Triple%20Lens%204G%20Solar%20Camera"
     },
     {
@@ -275,7 +275,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "V380 Dual Lens 4G Solar PTZ Camera Price Nigeria | Linos Security",
         seoDesc: "Buy the V380 Dual Lens 4G Solar PTZ Camera in Nigeria. Pan, tilt, zoom, and color night vision. No Wi-Fi needed for remote areas. Order now!",
-        category: "CCTV Cameras",
+        category: "CCTV",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20Dual%20Lens%204G%20Solar%20PTZ%20Camera"
     },
     {
@@ -287,7 +287,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "8 Channel CCTV System Price Nigeria Installation | Linos Security",
         seoDesc: "Buy a Basic 8 Channel CCTV System with Installation in Nigeria. Complete package with 8 cameras and DVR for comprehensive property surveillance. Order now!",
-        category: "CCTV Cameras",
+        category: "CCTV",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20the%20Basic%208%20Channel%20CCTV%20System"
     },
     {
@@ -299,7 +299,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Code 3 Lightbar for Security Cars Price Nigeria | Linos Security",
         seoDesc: "Buy Code 3 lightbars for security cars in Nigeria. High-visibility LED warning lights for patrol vehicles. Durable and effective. Get a quote today.",
-        category: "Security Hardware",
+        category: "Security Vehicle Equipment",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20a%20Code%203%20lightbar"
     },
     {
@@ -311,7 +311,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Xray Baggage Scanner Price Nigeria | Linos Security",
         seoDesc: "Buy X-ray Baggage Scanners in Nigeria for high-throughput security screening. Detect threats in luggage and parcels. Ideal for corporate and public venues. Get a quote.",
-        category: "Access Control Systems",
+        category: "Security Vehicle Equipment",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20an%20Xray%20Baggage%20Scanner"
     },
     {
@@ -323,7 +323,7 @@ const productsRaw = [
         status: "active",
         seoTitle: "Portable Safe Box Price Nigeria | Linos Security",
         seoDesc: "Buy a portable safe box in Nigeria. Durable and secure for protecting cash, documents, and valuables at home or in the office. Get a quote today.",
-        category: "Security Hardware",
+        category: "Smart Door Locks",
         whatsapp: "https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20get%20a%20quote%20for%20a%20Portable%20Safe"
     },
     {
@@ -400,10 +400,22 @@ const productsRaw = [
     }
 ];
 
+const categoryMapping = {
+    "Solar Power": "solar-power",
+    "Access Control": "access-control",
+    "CCTV": "cctv",
+    "Gate Automation": "gate-automation",
+    "Vehicle Access Control": "vehicle",
+    "Integrated Security": "integrated",
+    "Smart Door Locks": "door-locks",
+    "Security Vehicle Equipment": "security-vehicle"
+};
+
 const finalProducts = productsRaw.map(p => ({
     name: p.title,
     slug: p.handle,
     category: p.category,
+    category_slug: categoryMapping[p.category] || p.category.toLowerCase().replace(/ /g, '-'),
     price: p.price,
     image: p.image || 'https://i.postimg.cc/QdTMzQvh/5kva_setup.jpg',
     description: p.body.replace(/<[^>]*>?/gm, '').trim(),

@@ -13,10 +13,10 @@ const navLinks = [
     {
         name: 'Expertise', href: '/services', dropdown: [
             { name: 'CCTV Surveillance', href: '/services/cctv-installation' },
-            { name: 'Access Control', href: '/services/access-control' },
+            { name: 'Access Control', href: '/services/access-control-installation' },
             { name: 'Solar Power', href: '/services/solar-power-installation' },
-            { name: 'Gate Automation', href: '/services/gate-automation' },
-            { name: 'Turnstile Systems', href: '/services/turnstile-systems' },
+            { name: 'Gate Automation', href: '/services/automatic-gate-installation' },
+            { name: 'Turnstile Systems', href: '/services/turnstile-installation' },
         ]
     },
     { name: 'Locations', href: '/locations' },
@@ -90,7 +90,7 @@ export default function Navbar() {
                                                     href={sub.href}
                                                     className="block text-[9px] text-white/40 hover:text-linos-gold font-bold uppercase tracking-[0.2em] transition-colors"
                                                 >
-                                                    // {sub.name}
+                                                    {sub.name}
                                                 </Link>
                                             ))}
                                         </motion.div>

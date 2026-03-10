@@ -4,6 +4,7 @@ export interface Product {
     name: string;
     slug: string;
     category: string;
+    category_slug: string;
     price: number | string;
     image: string;
     description: string;
@@ -31,10 +32,10 @@ export const getProductBySlug = (slug: string): Product | undefined => {
 };
 
 export const getProductsByCategory = (category: string): Product[] => {
-    return getAllProducts().filter((p) => p.category.toLowerCase() === category.toLowerCase());
+    return getAllProducts().filter((p) => p.category_slug.toLowerCase() === category.toLowerCase());
 };
 
 export const getCategories = (): string[] => {
     const products = getAllProducts();
-    return Array.from(new Set(products.map((p) => p.category)));
+    return Array.from(new Set(products.map((p) => p.category_slug)));
 };

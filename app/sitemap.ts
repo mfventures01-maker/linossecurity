@@ -4,7 +4,7 @@ import { BUSINESS_DETAILS } from '@/config/business';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const products = getAllProducts();
-    const categories = getCategories();
+    const categories = ['solar-power', 'access-control', 'cctv', 'gate-automation', 'safes', 'vehicle-security', 'integrated-security', 'security-vehicle'];
     const cities = ['abuja', 'lagos', 'port-harcourt', 'kano', 'enugu', 'owerri', 'ibadan'];
     const services = ['cctv-installation', 'access-control-installation', 'solar-power-installation', 'automatic-gate-installation', 'turnstile-installation', 'smart-home-installation'];
 
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
     const categoryEntries = categories.map((cat: string) => ({
-        url: `${BUSINESS_DETAILS.website}/category/${cat.toLowerCase().replace(/ /g, '-')}`,
+        url: `${BUSINESS_DETAILS.website}/category/${cat}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,

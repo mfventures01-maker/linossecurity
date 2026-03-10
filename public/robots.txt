@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+
+Sitemap: https://linossecurity.com/sitemap.xml
+Sitemap: https://linossecurity.com/product-sitemap.xml
+Sitemap: https://linossecurity.com/category-sitemap.xml

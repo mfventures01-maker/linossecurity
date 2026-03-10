@@ -13,6 +13,40 @@ export default function JsonLd({ data }: JsonLdProps) {
     );
 }
 
+export const generateOrganizationSchema = (business: any) => ({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": business.name,
+    "url": business.website,
+    "logo": `${business.website}/logo.png`,
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": business.phone,
+        "contactType": "customer service",
+        "areaServed": "NG",
+        "availableLanguage": "English"
+    },
+    "sameAs": [
+        business.socials.facebook,
+        business.socials.instagram,
+        business.socials.linkedin
+    ],
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Security Products",
+        "itemListElement": [
+            { "@type": "OfferCatalog", "name": "Solar Power", "numberOfItems": 6 },
+            { "@type": "OfferCatalog", "name": "Access Control", "numberOfItems": 6 },
+            { "@type": "OfferCatalog", "name": "CCTV", "numberOfItems": 5 },
+            { "@type": "OfferCatalog", "name": "Gate Automation", "numberOfItems": 3 },
+            { "@type": "OfferCatalog", "name": "Vehicle Access", "numberOfItems": 5 },
+            { "@type": "OfferCatalog", "name": "Integrated Security", "numberOfItems": 1 },
+            { "@type": "OfferCatalog", "name": "Smart Door Locks", "numberOfItems": 5 },
+            { "@type": "OfferCatalog", "name": "Security Vehicle Equipment", "numberOfItems": 2 }
+        ]
+    }
+});
+
 export const generateLocalBusinessSchema = (business: any) => ({
     '@context': 'https://schema.org',
     '@type': 'SecurityComponent',

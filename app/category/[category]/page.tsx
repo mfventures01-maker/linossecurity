@@ -16,18 +16,13 @@ interface Props {
 
 export default function CategoryPage({ params }: Props) {
     const { category: categorySlug } = React.use(params as any) as { category: string };
-    const categories = getCategories();
+    const products = getProductsByCategory(categorySlug);
 
-    // Reverse slug to find name
-    const rawCategory = categorySlug.replace(/-/g, ' ');
-    const categoryName = categories.find(c => c.toLowerCase() === rawCategory.toLowerCase()) ||
-        rawCategory.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-
-    const products = getProductsByCategory(categoryName);
-
-    if (products.length === 0 && !categories.some(c => c.toLowerCase() === rawCategory.toLowerCase())) {
+    if (products.length === 0) {
         notFound();
     }
+
+    const categoryName = products[0].category;
 
     const breadcrumbs = [
         { name: 'Home', url: BUSINESS_DETAILS.website },

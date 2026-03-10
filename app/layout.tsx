@@ -3,6 +3,8 @@ import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import JsonLd, { generateOrganizationSchema } from "@/components/SEO/JsonLd";
+import { BUSINESS_DETAILS } from "@/config/business";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -31,6 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <JsonLd data={generateOrganizationSchema(BUSINESS_DETAILS)} />
+      </head>
       <body
         className={`${montserrat.variable} ${inter.variable} antialiased`}
       >
