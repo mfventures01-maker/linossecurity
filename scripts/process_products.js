@@ -10,8 +10,31 @@ const products = [];
 fs.createReadStream(inputFile)
     .pipe(csv())
     .on('data', (row) => {
-        // Determine category slug
-        const categoryName = row.category || 'General';
+        // Map headers from the new user-provided CSV format
+        const name = row.Title || row.product || '';
+        const slug = row.Handle || row.product_slug || '';
+        const description = row['Body (HTML)'] || row.description || '';
+        const price = row['Variant Price'] || row.price || 'Get Quote';
+        const image = row['Image Src'] || row.photo_url || '';
+        const googleCategory = row['Google Shopping / Google Product Category'] || '';
+        const whatsapp = row.whatsapp_cta_link || '';
+        const metaTitle = row['SEO Title'] || '';
+        const metaDesc = row['SEO Description'] || '';
+
+        // Determine internal category name based on Google Category or Title keyword
+        let categoryName = 'General';
+        if (googleCategory.includes('Power Supplies')) categoryName = 'Solar Power';
+        else if (googleCategory.includes('CCTV')) categoryName = 'CCTV';
+        else if (googleCategory.includes('Access Control')) categoryName = 'Access Control';
+        else if (googleCategory.includes('Doors & Gates')) {
+            if (name.toLowerCase().includes('gate')) categoryName = 'Gate Automation';
+            else if (name.toLowerCase().includes('lock')) categoryName = 'Smart Door Locks';
+            else categoryName = 'Access Control';
+        }
+        else if (googleCategory.includes('Emergency Road Flares')) categoryName = 'Security Vehicle Equipment';
+        else if (googleCategory.includes('Security & Surveillance')) categoryName = 'Integrated Security';
+
+        // Map internal category name to slug
         const categoryMapping = {
             "Solar Power": "solar-power",
             "Access Control": "access-control",
@@ -24,49 +47,46 @@ fs.createReadStream(inputFile)
         };
         const categorySlug = categoryMapping[categoryName] || categoryName.toLowerCase().replace(/\s+/g, '-');
 
-        // Clean and process each product
-        const product = {
-            // User's requested fields
-            product: row.product || row.title || '',
-            description: row.description || '',
-            price: row.price || 'Call for Quote',
-            photo_url: row.photo_url || row['Photo url'] || '',
-            category: categoryName,
-            seo_description: row.seo_description || row['seo_description'] || '',
-            meta_title: row.meta_title || row['meta_title'] || '',
-            meta_description: row.meta_description || row['meta_description'] || '',
-            whatsapp_cta_link: row.whatsapp_cta_link || row['whatsapp_cta_link'] || 'https://wa.me/2348069423078',
-            product_slug: row.product_slug || row['product_slug'] || '',
-            json_ld_schema: {}, // Default empty since CSV might not have it yet
+        // Clean price string for comparison
+        const priceStr = String(price).toLowerCase();
+        const isQuote = priceStr.includes('quote') || priceStr === 'n/a' || priceStr === '';
 
-            // Computed fields for UI
-            availability: determineAvailability(row.price),
-            stock_status: getStockStatus(row.price),
-            has_valid_price: hasValidPrice(row.price),
+        // Standardized Product Object
+        const product = {
+            // Core fields (User's SEO Format)
+            product: name,
+            description: description.replace(/<[^>]*>?/gm, ''), // Stripped for short desc
+            body_html: description, // Preserved for detail page
+            price: price,
+            photo_url: image,
+            category: categoryName,
+            seo_description: metaDesc,
+            meta_title: metaTitle,
+            meta_description: metaDesc,
+            whatsapp_cta_link: whatsapp,
+            product_slug: slug,
+            google_product_category: googleCategory,
 
             // Legacy compatibility fields
-            name: row.product || row.title || '',
-            slug: row.product_slug || row['product_slug'] || '',
-            image: row.photo_url || row['Photo url'] || '',
-            whatsapp: row.whatsapp_cta_link || row['whatsapp_cta_link'] || 'https://wa.me/2348069423078',
+            name: name,
+            slug: slug,
+            image: image,
+            whatsapp: whatsapp,
             category_slug: categorySlug,
-            google_product_category: row.google_product_category || '600',
-            condition: 'new',
             seo: {
-                meta_title: row.meta_title || row['meta_title'] || '',
-                meta_description: row.meta_description || row['meta_description'] || ''
-            }
-        };
+                meta_title: metaTitle,
+                meta_description: metaDesc
+            },
 
-        try {
-            if (row.json_ld_schema) {
-                product.json_ld_schema = JSON.parse(row.json_ld_schema);
-            }
-        } catch (e) { }
+            // Computed fields for UI logic
+            availability: isQuote ? 'call-for-quote' : 'in-stock',
+            stock_status: isQuote ? 'Call for Quote' : 'In Stock',
+            has_valid_price: !isQuote
+        };
 
         // Clean price for numeric products
         if (product.has_valid_price) {
-            const cleanPrice = String(row.price).replace(/[₦,]/g, '');
+            const cleanPrice = String(price).replace(/[₦,]/g, '');
             const numPrice = parseFloat(cleanPrice);
             if (!isNaN(numPrice)) {
                 product.price_numeric = numPrice;
@@ -76,43 +96,6 @@ fs.createReadStream(inputFile)
         products.push(product);
     })
     .on('end', () => {
-        // Write to JSON file - Wrapped in object for legacy compatibility but also has flat structure if needed
-        // However, the user's ProductPage expects it to be an array directly: `productsData as Product[]`
-        // So I will output it as an array to satisfy the user's fix.
-        // I will then update lib/products.ts to handle the array format.
         fs.writeFileSync(outputFile, JSON.stringify(products, null, 2));
-        console.log(`✅ Successfully wrote ${products.length} products to ${outputFile}`);
+        console.log(`✅ Successfully processed ${products.length} products to ${outputFile}`);
     });
-
-// Helper functions
-function determineAvailability(price) {
-    if (!price) return 'call-for-quote';
-    const priceStr = String(price).toLowerCase();
-    if (priceStr.includes('get quote') ||
-        priceStr.includes('get a quote') ||
-        priceStr.includes('quote') ||
-        priceStr === 'n/a' ||
-        priceStr === '') {
-        return 'call-for-quote';
-    }
-    return 'in-stock';
-}
-
-function getStockStatus(price) {
-    if (!price) return 'Call for Quote';
-    const priceStr = String(price).toLowerCase();
-    if (priceStr.includes('get quote') || priceStr.includes('quote')) {
-        return 'Call for Quote';
-    }
-    return 'In Stock';
-}
-
-function hasValidPrice(price) {
-    if (!price) return false;
-    const priceStr = String(price).toLowerCase();
-    return !(priceStr.includes('get quote') ||
-        priceStr.includes('get a quote') ||
-        priceStr.includes('quote') ||
-        priceStr === 'n/a' ||
-        priceStr === '');
-}
