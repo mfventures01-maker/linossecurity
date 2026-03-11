@@ -10,29 +10,45 @@ const products = [];
 fs.createReadStream(inputFile)
     .pipe(csv())
     .on('data', (row) => {
-        // Map headers from the new user-provided CSV format
-        const name = row.Title || row.product || '';
-        const slug = row.Handle || row.product_slug || '';
-        const description = row['Body (HTML)'] || row.description || '';
+        // Map headers from the new user-provided CSV format (supports multiple naming conventions)
+        const name = (row.Title || row.product || row.product_name || row.installation_capacity || '').replace(/^"|"$/g, '').trim();
+        const slug = (row.Handle || row.product_slug || '').trim();
+
+        if (!name) {
+            console.warn(`⚠️ Warning: Skipping row with missing product name: ${JSON.stringify(row).substring(0, 100)}...`);
+            return;
+        }
+
+        if (!slug) {
+            console.warn(`⚠️ Warning: Product "${name}" has no slug. Generating from name...`);
+            // generate fallback slug if missing and needed for Next.js build
+            const fallbackSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            row.product_slug = fallbackSlug;
+        }
+        const description = row['Body (HTML)'] || row.description || row.seo_description || '';
         const price = row['Variant Price'] || row.price || 'Get Quote';
         const image = row['Image Src'] || row.photo_url || '';
-        const googleCategory = row['Google Shopping / Google Product Category'] || '';
+        const googleCategory = row['Google Shopping / Google Product Category'] || row.category || '';
         const whatsapp = row.whatsapp_cta_link || '';
-        const metaTitle = row['SEO Title'] || '';
-        const metaDesc = row['SEO Description'] || '';
+
+        // SEO optimization fallbacks
+        const metaTitle = row['SEO Title'] || row.meta_title || '';
+        const metaDesc = row['SEO Description'] || row.meta_description || row.seo_description || '';
 
         // Determine internal category name based on Google Category or Title keyword
-        let categoryName = 'General';
-        if (googleCategory.includes('Power Supplies')) categoryName = 'Solar Power';
-        else if (googleCategory.includes('CCTV')) categoryName = 'CCTV';
-        else if (googleCategory.includes('Access Control')) categoryName = 'Access Control';
-        else if (googleCategory.includes('Doors & Gates')) {
+        let categoryName = row.category || 'General';
+        const gCat = String(googleCategory).toLowerCase();
+
+        if (gCat.includes('power supplies') || gCat.includes('solar')) categoryName = 'Solar Power';
+        else if (gCat.includes('cctv')) categoryName = 'CCTV';
+        else if (gCat.includes('access control')) categoryName = 'Access Control';
+        else if (gCat.includes('doors & gates') || gCat.includes('gate opener')) {
             if (name.toLowerCase().includes('gate')) categoryName = 'Gate Automation';
             else if (name.toLowerCase().includes('lock')) categoryName = 'Smart Door Locks';
             else categoryName = 'Access Control';
         }
-        else if (googleCategory.includes('Emergency Road Flares')) categoryName = 'Security Vehicle Equipment';
-        else if (googleCategory.includes('Security & Surveillance')) categoryName = 'Integrated Security';
+        else if (gCat.includes('road flares') || gCat.includes('vehicle')) categoryName = 'Security Vehicle Equipment';
+        else if (gCat.includes('security & surveillance') || gCat.includes('integrated')) categoryName = 'Integrated Security';
 
         // Map internal category name to slug
         const categoryMapping = {
@@ -49,7 +65,7 @@ fs.createReadStream(inputFile)
 
         // Clean price string for comparison
         const priceStr = String(price).toLowerCase();
-        const isQuote = priceStr.includes('quote') || priceStr === 'n/a' || priceStr === '';
+        const isQuote = priceStr.includes('quote') || priceStr === 'n/a' || priceStr === '' || priceStr === 'nan';
 
         // Standardized Product Object
         const product = {
@@ -57,13 +73,13 @@ fs.createReadStream(inputFile)
             product: name,
             description: description.replace(/<[^>]*>?/gm, ''), // Stripped for short desc
             body_html: description, // Preserved for detail page
-            price: price,
-            photo_url: image,
+            price: (price === 'nan' || !price) ? 'Get Quote' : price,
+            photo_url: (image === 'nan' || !image) ? '' : image,
             category: categoryName,
             seo_description: metaDesc,
             meta_title: metaTitle,
             meta_description: metaDesc,
-            whatsapp_cta_link: whatsapp,
+            whatsapp_cta_link: (whatsapp === 'nan') ? '' : whatsapp,
             product_slug: slug,
             google_product_category: googleCategory,
             condition: 'new',
@@ -71,8 +87,8 @@ fs.createReadStream(inputFile)
             // Legacy compatibility fields
             name: name,
             slug: slug,
-            image: image,
-            whatsapp: whatsapp,
+            image: image === 'nan' ? '' : image,
+            whatsapp: whatsapp === 'nan' ? '' : whatsapp,
             category_slug: categorySlug,
             seo: {
                 meta_title: metaTitle,
