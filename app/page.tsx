@@ -8,10 +8,10 @@ import SecurityConfigurator from '@/components/SecurityConfigurator';
 import { Shield, Zap, Camera, Lock, ArrowRight, CheckCircle2, Star, ShieldAlert, Cpu } from 'lucide-react';
 
 const specialties = [
-  { name: 'Access Control', icon: Lock, desc: 'Biometric & Facial Recognition' },
-  { name: 'CCTV Systems', icon: Camera, desc: '4K Smart AI Surveillance' },
-  { name: 'Gate Automation', icon: Shield, desc: 'Heavy-duty Gate Operators' },
-  { name: 'Solar Power', icon: Zap, desc: 'Hybrid Hybrid Backup Energy' },
+  { name: 'CCTV Systems', icon: Camera, desc: 'AI-Powered 4K Surveillance & Analytics' },
+  { name: 'Security Doors', icon: Lock, desc: 'Smart Biometric & Multi-Point Locking' },
+  { name: 'Gate Automation', icon: Shield, desc: 'High-Speed Smart Motor Integration' },
+  { name: 'Solar Power', icon: Zap, desc: 'Mission-Critical Hybrid Energy Systems' },
 ];
 
 export default function Home() {
@@ -82,23 +82,23 @@ export default function Home() {
               transition={{ duration: 1 }}
               className="relative hidden lg:block"
             >
-              <div className="relative rounded-sm overflow-hidden border border-linos-gold/20 aspect-[4/5] bg-[#0A0A0A] group">
+              <div className="relative rounded-sm overflow-hidden border border-linos-gold/20 aspect-[4/5] bg-[#0A0A0A] group shadow-2xl shadow-linos-gold/5">
                 <Image
-                  src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=2070&auto=format&fit=crop"
-                  alt="Security Integration"
+                  src="/images/villa.png"
+                  alt="Linos Security Villa Deployment"
                   fill
-                  className="object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+                  className="object-cover opacity-80 group-hover:scale-105 transition-all duration-1000"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent opacity-60" />
 
-                <div className="absolute bottom-8 left-8 right-8 p-8 glass-panel rounded-sm">
+                <div className="absolute bottom-8 left-8 right-8 p-8 glass-panel rounded-sm text-left">
                   <div className="flex items-center space-x-4">
-                    <div className="bg-linos-gold p-3 rounded-full">
+                    <div className="bg-linos-gold p-3 rounded-full shadow-lg shadow-linos-gold/20">
                       <Cpu className="w-6 h-6 text-linos-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold uppercase tracking-wider text-sm">Industrial Integration</h4>
-                      <p className="text-white/40 text-[10px] uppercase font-bold tracking-widest mt-1">Linos Tech Infrastructure</p>
+                      <h4 className="text-white font-bold uppercase tracking-[0.2em] text-[10px]">Industrial Integration</h4>
+                      <p className="text-white/40 text-[9px] uppercase font-bold tracking-[0.3em] mt-1">Solar & Gate Automation</p>
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ export default function Home() {
 
               {/* Decorative elements */}
               <div className="absolute -top-10 -right-10 w-40 h-40 border border-linos-gold/20 rounded-full" />
-              <div className="absolute -bottom-10 -left-10 w-20 h-20 bg-linos-gold flex items-center justify-center p-4">
+              <div className="absolute -bottom-10 -left-10 w-20 h-20 bg-linos-gold flex items-center justify-center p-4 shadow-2xl z-20">
                 <Shield className="w-full h-full text-linos-black" />
               </div>
             </motion.div>
@@ -117,9 +117,9 @@ export default function Home() {
       {/* Specialty Grid */}
       <section className="py-32 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">Execution <span className="text-linos-gold">Excellence</span></h2>
-            <p className="text-white/40 max-w-2xl mx-auto font-bold uppercase tracking-widest text-xs">A comprehensive suite of security and power automation systems.</p>
+          <div className="text-center mb-24">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 uppercase tracking-wider">Engineering <span className="text-linos-gold">Disciplines</span></h2>
+            <p className="text-white/40 max-w-2xl mx-auto font-bold uppercase tracking-[0.3em] text-[10px]">Linos E Security specialized infrastructure services.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -129,13 +129,162 @@ export default function Home() {
                 whileHover={{ y: -10 }}
                 className="p-10 border border-white/5 bg-white/[0.02] hover:bg-linos-gold/10 hover:border-linos-gold/30 transition-all group"
               >
-                <item.icon className="w-12 h-12 text-linos-gold mb-8 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wider">{item.name}</h3>
-                <p className="text-white/40 text-sm mb-8 leading-relaxed italic">{item.desc}</p>
-                <Link href="/services" className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.2em] flex items-center hover:translate-x-2 transition-transform">
-                  Explore Service <ArrowRight className="w-3 h-3 ml-2" />
+                <item.icon className="w-10 h-10 text-linos-gold mb-8 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-widest leading-tight">{item.name}</h3>
+                <p className="text-white/30 text-xs mb-8 leading-relaxed italic font-light">{item.desc}</p>
+                <Link href="/services" className="text-linos-gold text-[9px] font-bold uppercase tracking-[0.3em] flex items-center hover:translate-x-2 transition-transform">
+                  Specifications <ArrowRight className="w-3 h-3 ml-2" />
                 </Link>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industrial Portfolio Showcase */}
+      <section className="py-32 bg-linos-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+            <div className="max-w-2xl space-y-6">
+              <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.5em]">Installation Showcase</span>
+              <h2 className="text-4xl md:text-6xl font-display font-bold text-white uppercase italic">Elite <br /><span className="text-linos-gold">Deployments</span>.</h2>
+              <p className="text-white/40 text-lg italic leading-relaxed font-light">
+                Witness the standard of engineering we bring to every high-value asset in the country.
+              </p>
+            </div>
+            <Link href="/shop" className="btn-outline !py-6 !px-12 uppercase text-[10px] tracking-widest font-bold">Explore Full Catalog</Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-[800px]">
+            {/* Mega Tile 1: CCTV */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="md:col-span-12 lg:col-span-8 relative group overflow-hidden border border-white/5"
+            >
+              <Image
+                src="/images/cctv.png"
+                alt="AI Surveillance"
+                fill
+                className="object-cover group-hover:scale-105 transition-all duration-1000 opacity-80 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity" />
+              <div className="absolute bottom-10 left-10 space-y-4">
+                <span className="text-linos-gold text-[9px] font-bold uppercase tracking-widest bg-linos-black/50 px-3 py-1 border border-linos-gold/30">CCTV & Surveillance</span>
+                <h3 className="text-3xl font-bold text-white uppercase tracking-tighter shadow-sm shadow-black/80">AI-Driven <br /> Threat Detection</h3>
+                <p className="text-white/60 text-sm max-w-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  4K Optical sensors with neural engine processing for real-time facility protection and behavioral analytics.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Tile 2: Solar */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="md:col-span-6 lg:col-span-4 relative group overflow-hidden border border-white/5"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1508514177221-18d142735863?q=80&w=2070&auto=format&fit=crop"
+                alt="Hybrid Solar"
+                fill
+                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-50 group-hover:opacity-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-linos-black/80 to-transparent" />
+              <div className="absolute bottom-8 left-8">
+                <span className="text-linos-gold text-[8px] font-bold uppercase tracking-widest block mb-2">Power Autonomy</span>
+                <h3 className="text-xl font-bold text-white uppercase tracking-wider">Mission Critical Solar</h3>
+              </div>
+            </motion.div>
+
+            {/* Tile 3: Gates */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="md:col-span-6 lg:col-span-4 relative group overflow-hidden border border-white/5"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1626354432130-9b48b77a0643?q=80&w=2070&auto=format&fit=crop"
+                alt="Gate Automation"
+                fill
+                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-50 group-hover:opacity-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-linos-black/80 to-transparent" />
+              <div className="absolute bottom-8 left-8">
+                <span className="text-linos-gold text-[8px] font-bold uppercase tracking-widest block mb-2">Gate Automation</span>
+                <h3 className="text-xl font-bold text-white uppercase tracking-wider">Armored Perimeter Access</h3>
+              </div>
+            </motion.div>
+
+            {/* Tile 4: Doors */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="md:col-span-12 lg:col-span-8 relative group overflow-hidden border border-white/5"
+            >
+              <Image
+                src="/images/door.png"
+                alt="Security Doors"
+                fill
+                className="object-cover group-hover:scale-105 transition-all duration-1000 opacity-80 group-hover:opacity-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity" />
+              <div className="absolute bottom-10 left-10">
+                <span className="text-linos-gold text-[9px] font-bold uppercase tracking-widest block mb-2">Security Doors & Access</span>
+                <h3 className="text-2xl font-bold text-white uppercase tracking-wider">Biometric & <br /> High-Security Entry Points</h3>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Hardware Row */}
+      <section className="py-24 bg-[#080808] border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center space-x-6 mb-16">
+            <div className="h-[1px] w-12 bg-linos-gold"></div>
+            <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.4em]">Asset Collection 2026</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
+            {[
+              {
+                name: "5kVA Hybrid Solar Inverter",
+                cat: "Power Systems",
+                img: "https://i.postimg.cc/Jz69jvpM/1-5-KWzhutu2-800-800.jpg",
+                href: "/products/super-home-5kva-48v-hybrid-inverter"
+              },
+              {
+                name: "D10 Turbo SMΔRT Gate",
+                cat: "Automation",
+                img: "https://i.postimg.cc/763Hgbcn/d3-smart-gate-machine.jpg",
+                href: "/products/d10-turbo-smart-gate-opener"
+              },
+              {
+                name: "4K AI Surveillance Pack",
+                cat: "Surveillance",
+                img: "https://i.postimg.cc/nrbRBh7H/G3-Hikvision-4k-8mp-Ip-Camera-Colorvu-Ds-2cd2387g3-li2uy-Acusense-3-0-Dual-Mic.jpg",
+                href: "/products/v380-standalone-wifi-camera"
+              },
+              {
+                name: "Biometric Facial Terminal",
+                cat: "Access Control",
+                img: "https://i.postimg.cc/cJnfx4wP/face-n-finger.jpg",
+                href: "/products/zkteco-vf780-face-palm-reader"
+              }
+            ].map((p, i) => (
+              <Link key={i} href={p.href} className="bg-linos-black p-10 hover:bg-linos-gold/[0.03] transition-colors group">
+                <div className="aspect-square relative mb-8 overflow-hidden bg-white/[0.02]">
+                  <Image
+                    src={p.img}
+                    alt={p.name}
+                    fill
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all group-hover:scale-110 duration-500"
+                  />
+                </div>
+                <span className="text-[8px] text-white/30 uppercase tracking-widest block mb-2">{p.cat}</span>
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider group-hover:text-linos-gold transition-colors">{p.name}</h4>
+              </Link>
             ))}
           </div>
         </div>
