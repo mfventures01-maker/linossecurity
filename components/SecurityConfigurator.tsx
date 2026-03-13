@@ -33,18 +33,45 @@ export default function SecurityConfigurator() {
     const [selections, setSelections] = useState<Record<string, string>>({});
     const [isComplete, setIsComplete] = useState(false);
 
-    const handleSelect = (stepId: string, value: string) => {
-        setSelections({ ...selections, [stepId]: value });
+    const [recommendedProducts, setRecommendedProducts] = useState<any[]>([]);
+
+    const handleSelect = async (stepId: string, value: string) => {
+        const newSelections = { ...selections, [stepId]: value };
+        setSelections(newSelections);
+
         if (currentStep < steps.length - 1) {
             setCurrentStep(currentStep + 1);
         } else {
             setIsComplete(true);
+            // Fetch products for recommendations
+            try {
+                const res = await fetch('/api/products');
+                const products = await res.json();
+
+                // Simple recommendation logic: filter by the 'priority' selection
+                const priority = newSelections.priority; // access, cctv, solar, gate
+                const categoryMap: Record<string, string> = {
+                    'access': 'Access Control',
+                    'cctv': 'CCTV',
+                    'solar': 'Solar Power',
+                    'gate': 'Gate Automation'
+                };
+
+                const filtered = products.filter((p: any) =>
+                    p.category === categoryMap[priority] ||
+                    p.category_slug?.includes(priority)
+                ).slice(0, 3);
+
+                setRecommendedProducts(filtered);
+            } catch (err) {
+                console.error("Failed to load recommendations", err);
+            }
         }
     };
 
     return (
         <div className="bg-[#050505] py-20 border-y border-white/5">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-2xl md:text-4xl font-display font-bold text-white mb-6 uppercase tracking-wider">
                         System <span className="text-linos-gold">Configurator</span>
@@ -52,7 +79,7 @@ export default function SecurityConfigurator() {
                     <p className="text-white/40 text-xs font-bold uppercase tracking-[0.3em]">Build your custom security infrastructure in 60 seconds.</p>
                 </div>
 
-                <div className="p-12 glass-panel border-white/5 relative overflow-hidden">
+                <div className="p-8 md:p-12 glass-panel border-white/5 relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-1 bg-white/5">
                         <motion.div
                             className="h-full bg-linos-gold"
@@ -101,10 +128,10 @@ export default function SecurityConfigurator() {
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="text-center space-y-10 py-10"
+                                className="text-center space-y-10 py-6"
                             >
-                                <div className="w-20 h-20 bg-linos-gold rounded-full flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-linos-gold/20">
-                                    <CheckCircle2 className="w-10 h-10 text-linos-black" />
+                                <div className="w-16 h-16 bg-linos-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-linos-gold/20">
+                                    <CheckCircle2 className="w-8 h-8 text-linos-black" />
                                 </div>
 
                                 <h3 className="text-2xl font-bold text-white uppercase tracking-widest">Configuration Engineered</h3>
@@ -112,12 +139,34 @@ export default function SecurityConfigurator() {
                                     Based on your inputs, our architects have modeled a specialized system for {selections.building} security with a focus on {selections.priority}.
                                 </p>
 
-                                <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
+                                {recommendedProducts.length > 0 && (
+                                    <div className="pt-10 space-y-8">
+                                        <h4 className="text-xs font-bold text-linos-gold uppercase tracking-[0.4em]">Recommended Hardware Assets</h4>
+                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                            {recommendedProducts.map((p) => (
+                                                <Link
+                                                    key={p.slug}
+                                                    href={`/products/${p.product_slug || p.slug}`}
+                                                    className="p-6 border border-white/5 bg-white/[0.01] hover:border-linos-gold/30 transition-all text-left group"
+                                                >
+                                                    <span className="text-[8px] text-white/30 uppercase tracking-widest block mb-2">{p.category}</span>
+                                                    <h5 className="text-[10px] text-white font-bold uppercase leading-tight group-hover:text-linos-gold transition-colors">{p.name || p.product}</h5>
+                                                    <div className="mt-4 flex justify-between items-center">
+                                                        <span className="text-[9px] text-linos-gold font-bold">{p.price}</span>
+                                                        <ChevronRight className="w-3 h-3 text-white/20 group-hover:text-linos-gold transition-colors" />
+                                                    </div>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
                                     <Link href="/contact" className="btn-gold !px-12">
-                                        Request Full Quote
+                                        Request Full Deployment Quote
                                     </Link>
                                     <button
-                                        onClick={() => { setIsComplete(false); setCurrentStep(0); setSelections({}); }}
+                                        onClick={() => { setIsComplete(false); setCurrentStep(0); setSelections({}); setRecommendedProducts([]); }}
                                         className="text-white/40 hover:text-white text-[10px] font-bold uppercase tracking-widest border border-white/10 px-8 py-4"
                                     >
                                         Restart Configurator

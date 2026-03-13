@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "node scripts/verify-env.js",
+    "prebuild": "node scripts/verify-env.js && node scripts/fetch_products.js",
     "deploy": "git push origin main"
   },
   "dependencies": {

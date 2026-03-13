@@ -46,18 +46,26 @@ function getLocalProducts(): Product[] {
 }
 
 function validateProducts(products: any[]): Product[] {
-    return (products || []).map(p => ({
-        ...p,
-        name: p?.name || p?.product || 'Unnamed Product',
-        product: p?.name || p?.product || 'Unnamed Product',
-        category: p?.category || 'General',
-        category_slug: p?.category_slug || (p?.category || 'General').toLowerCase().replace(/\s+/g, '-'),
-        price: p?.price || 'Call for Quote',
-        product_slug: p?.product_slug || p?.slug || '',
-        slug: p?.product_slug || p?.slug || '',
-        photo_url: p?.photo_url || p?.image || '',
-        description: p?.description || ''
-    })).filter(p => p.product_slug);
+    return (products || []).map(p => {
+        const name = p?.name || p?.product || p?.product_name || 'Unnamed Product';
+        const price = p?.price || p?.['price_(₦)'] || 'Call for Quote';
+        const slug = p?.product_slug || p?.slug || '';
+        const image = p?.photo_url || p?.image || '';
+
+        return {
+            ...p,
+            name,
+            product: name,
+            category: p?.category || 'General',
+            category_slug: p?.category_slug || (p?.category || 'General').toLowerCase().replace(/\s+/g, '-'),
+            price: String(price),
+            product_slug: slug,
+            slug: slug,
+            photo_url: image,
+            image: image,
+            description: p?.description || ''
+        };
+    }).filter(p => p.product_slug);
 }
 
 // Keep legacy exports for compatibility but make them safer
