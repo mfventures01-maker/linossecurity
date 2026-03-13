@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SecurityConfigurator from '@/components/SecurityConfigurator';
 import { Shield, Zap, Camera, Lock, ArrowRight, CheckCircle2, Star, ShieldAlert, Cpu } from 'lucide-react';
+import { BUSINESS_DETAILS } from '@/config/business';
 
 const specialties = [
   { name: 'CCTV Systems', icon: Camera, desc: 'AI-Powered 4K Surveillance & Analytics' },
@@ -84,10 +85,10 @@ export default function Home() {
             >
               <div className="relative rounded-sm overflow-hidden border border-linos-gold/20 aspect-[4/5] bg-[#0A0A0A] group shadow-2xl shadow-linos-gold/5">
                 <Image
-                  src="/images/villa.png"
-                  alt="Linos Security Villa Deployment"
+                  src="https://i.postimg.cc/mrntpp4J/linos_man_working_on_estate_security.png"
+                  alt="Linos Security Engineer at Work"
                   fill
-                  className="object-cover opacity-80 group-hover:scale-105 transition-all duration-1000"
+                  className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent opacity-60" />
 
@@ -369,7 +370,7 @@ export default function Home() {
                 <Link href="/contact" className="btn-gold !px-12">
                   Request Technical Design
                 </Link>
-                <a href="https://wa.me/2348000000000" className="btn-outline flex items-center justify-center px-10">
+                <a href={`https://wa.me/${BUSINESS_DETAILS.whatsapp}`} className="btn-outline flex items-center justify-center px-10">
                   WhatsApp Engineer
                 </a>
               </div>

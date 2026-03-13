@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Home, Building, Building2, Lock, Camera, Zap, ChevronRight, ChevronLeft, Send, CheckCircle2 } from 'lucide-react';
+import { BUSINESS_DETAILS } from '@/config/business';
 
 const steps = [
     {
@@ -165,11 +166,19 @@ export default function SecurityConfigurator() {
                                     <Link href="/contact" className="btn-gold !px-12">
                                         Request Full Deployment Quote
                                     </Link>
+                                    <a
+                                        href={`https://wa.me/${BUSINESS_DETAILS.whatsapp}?text=Hello%20Linos%20Security%2C%20I%20just%20completed%20the%20configurator.%0ABuilding%3A%20${selections.building}%0APriority%3A%20${selections.priority}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn-outline flex items-center justify-center px-10"
+                                    >
+                                        WhatsApp Engineer
+                                    </a>
                                     <button
                                         onClick={() => { setIsComplete(false); setCurrentStep(0); setSelections({}); setRecommendedProducts([]); }}
                                         className="text-white/40 hover:text-white text-[10px] font-bold uppercase tracking-widest border border-white/10 px-8 py-4"
                                     >
-                                        Restart Configurator
+                                        Restart
                                     </button>
                                 </div>
                             </motion.div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ShieldCheck } from 'lucide-react';
+import { BUSINESS_DETAILS } from '@/config/business';
 
 export default function Footer() {
     return (
@@ -10,13 +11,13 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="space-y-6">
                         <Link href="/" className="flex items-center space-x-3">
-                            <div className="w-12 h-12 bg-linos-gold rounded-full flex items-center justify-center p-2">
-                                <Image src="/logo.png" alt="Linos Logo" width={30} height={30} className="object-contain" />
+                            <div className="relative w-12 h-12 bg-linos-gold rounded-full flex items-center justify-center p-2 shadow-lg shadow-linos-gold/20 flex-shrink-0">
+                                <Image src="/logo.png" alt="Linos Logo" width={30} height={30} className="object-contain" unoptimized />
                             </div>
                             <span className="text-xl font-display font-bold text-white tracking-widest leading-none">LINOS E</span>
                         </Link>
                         <p className="text-white/40 text-sm leading-relaxed">
-                            Nigeria’s trusted authority in security automation and technology infrastructure. Providing elite protection for corporate and residential assets.
+                            {BUSINESS_DETAILS.name} — Nigeria’s trusted authority in security automation and technology infrastructure. Providing elite protection for corporate and residential assets.
                         </p>
                         <div className="flex space-x-4">
                             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -51,7 +52,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {['About Us', 'Project Portfolio', 'Industries', 'Installation Packages', 'Contact'].map((item) => (
                                 <li key={item}>
-                                    <Link href="#" className="text-white/40 hover:text-linos-gold text-sm transition-colors">{item}</Link>
+                                    <Link href="/contact" className="text-white/40 hover:text-linos-gold text-sm transition-colors">{item}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -63,15 +64,15 @@ export default function Footer() {
                         <ul className="space-y-6">
                             <li className="flex items-start space-x-4">
                                 <MapPin className="w-5 h-5 text-linos-gold shrink-0" />
-                                <span className="text-white/40 text-sm">Suit 202, 2nd Floor, Bright Star Plaza, 50 Ebitu Ukiwe St, Jabi, Abuja</span>
+                                <span className="text-white/40 text-sm leading-relaxed">{BUSINESS_DETAILS.address}</span>
                             </li>
                             <li className="flex items-center space-x-4">
                                 <Phone className="w-5 h-5 text-linos-gold shrink-0" />
-                                <span className="text-white/40 text-sm">+234 800 000 0000</span>
+                                <span className="text-white/40 text-sm">{BUSINESS_DETAILS.phone}</span>
                             </li>
                             <li className="flex items-center space-x-4">
                                 <Mail className="w-5 h-5 text-linos-gold shrink-0" />
-                                <span className="text-white/40 text-sm">info@linose-security.com</span>
+                                <span className="text-white/40 text-sm lowercase">{BUSINESS_DETAILS.email}</span>
                             </li>
                         </ul>
                     </div>
