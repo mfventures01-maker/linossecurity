@@ -6,6 +6,7 @@
 [build.environment]
   NODE_VERSION = "20"
   NPM_FLAGS = "--version"
+  GOOGLE_SHEETS_PRODUCT_URL = "https://script.google.com/macros/s/AKfycbwxKNUe9MPK_vlXqB8k8lS4Z6_MccooOkJEzUYtCsI673mHd5VMki1y1qxSanJPj2ez/exec"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
