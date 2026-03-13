@@ -14,11 +14,12 @@ export default function ShopPage() {
     const allProducts = getAllProducts();
 
     // Use categories directly from the products
-    const categories = ['All', ...Array.from(new Set(allProducts.map(p => p.category)))].sort();
+    const categories = ['All', ...Array.from(new Set(allProducts.map(p => p.category).filter(Boolean)))].sort();
 
     const filteredProducts = allProducts.filter(p => {
-        const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
-        const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCategory = activeCategory === 'All' || p?.category === activeCategory;
+        const name = p?.name || p?.product || '';
+        const matchesSearch = name.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
     });
 
