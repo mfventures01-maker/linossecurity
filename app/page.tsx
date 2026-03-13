@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SecurityConfigurator from '@/components/SecurityConfigurator';
+import WorkSlider from '@/components/WorkSlider';
 import { Shield, Zap, Camera, Lock, ArrowRight, CheckCircle2, Star, ShieldAlert, Cpu } from 'lucide-react';
 import { BUSINESS_DETAILS } from '@/config/business';
 
@@ -164,7 +165,7 @@ export default function Home() {
               className="md:col-span-12 lg:col-span-8 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="/images/cctv.png"
+                src="/images/cctv-work.png"
                 alt="AI Surveillance"
                 fill
                 className="object-cover group-hover:scale-105 transition-all duration-1000 opacity-80 group-hover:opacity-100"
@@ -186,10 +187,10 @@ export default function Home() {
               className="md:col-span-6 lg:col-span-4 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="https://images.unsplash.com/photo-1508514177221-18d142735863?q=80&w=2070&auto=format&fit=crop"
+                src="/images/solar-work.png"
                 alt="Hybrid Solar"
                 fill
-                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-50 group-hover:opacity-90"
+                className="object-cover group-hover:scale-110 transition-all duration-1000 opacity-80 group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-linos-black/80 to-transparent" />
               <div className="absolute bottom-8 left-8">
@@ -205,10 +206,10 @@ export default function Home() {
               className="md:col-span-6 lg:col-span-4 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="https://images.unsplash.com/photo-1626354432130-9b48b77a0643?q=80&w=2070&auto=format&fit=crop"
+                src="/images/gate-work.png"
                 alt="Gate Automation"
                 fill
-                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 opacity-50 group-hover:opacity-90"
+                className="object-cover group-hover:scale-110 transition-all duration-1000 opacity-80 group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-linos-black/80 to-transparent" />
               <div className="absolute bottom-8 left-8">
@@ -224,7 +225,7 @@ export default function Home() {
               className="md:col-span-12 lg:col-span-8 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="/images/door.png"
+                src="/images/door-elite.png"
                 alt="Security Doors"
                 fill
                 className="object-cover group-hover:scale-105 transition-all duration-1000 opacity-80 group-hover:opacity-100"
@@ -292,6 +293,8 @@ export default function Home() {
       </section>
 
       <SecurityConfigurator />
+
+      <WorkSlider />
 
       {/* Blog Intelligence Section */}
       <section className="py-32 bg-[#050505] relative overflow-hidden">

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Shield, Zap, Camera, Lock, ArrowRight, CheckCircle2, Monitor, DoorClosed, AlertTriangle } from 'lucide-react';
+import WorkSlider from '@/components/WorkSlider';
 
 const services = [
     {
@@ -97,6 +98,10 @@ export default function ServicesPage() {
                         </motion.div>
                     ))}
                 </div>
+            </div>
+
+            <div className="mt-32">
+                <WorkSlider />
             </div>
 
             {/* Expertise Section */}

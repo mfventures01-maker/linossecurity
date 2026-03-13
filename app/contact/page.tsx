@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, ShieldCheck, Send, Clock, UserCheck } from 'lucide-react';
 import { BUSINESS_DETAILS } from '@/config/business';
+import WorkSlider from '@/components/WorkSlider';
 
 export default function ContactPage() {
     return (
@@ -143,7 +144,13 @@ export default function ContactPage() {
                         </form>
                     </div>
                 </div>
+
+                <div className="mt-40">
+                    <WorkSlider />
+                </div>
             </div>
         </div>
     );
 }
+
+

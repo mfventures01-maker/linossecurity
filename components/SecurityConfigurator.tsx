@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Home, Building, Building2, Lock, Camera, Zap, ChevronRight, ChevronLeft, Send, CheckCircle2 } from 'lucide-react';
 import { BUSINESS_DETAILS } from '@/config/business';
@@ -11,20 +12,20 @@ const steps = [
         id: 'building',
         question: 'Type of Facility Architecture',
         options: [
-            { name: 'Luxury Residential', icon: Home, value: 'residential' },
-            { name: 'Corporate Office', icon: Building, value: 'corporate' },
-            { name: 'Industrial Complex', icon: Building2, value: 'industrial' },
-            { name: 'Gated Estate', icon: Shield, value: 'estate' },
+            { name: 'Luxury Residential', icon: Home, value: 'residential', img: '/images/building-residential.png' },
+            { name: 'Corporate Office', icon: Building, value: 'corporate', img: '/images/building-corporate.png' },
+            { name: 'Industrial Complex', icon: Building2, value: 'industrial', img: '/images/building-industrial.png' },
+            { name: 'Gated Estate', icon: Shield, value: 'estate', img: '/images/building-estate.png' },
         ]
     },
     {
         id: 'priority',
         question: 'Core Security Objective',
         options: [
-            { name: 'Access Control', icon: Lock, value: 'access' },
-            { name: 'Surveillance', icon: Camera, value: 'cctv' },
-            { name: 'Power Autonomy', icon: Zap, value: 'solar' },
-            { name: 'Gate Automation', icon: Shield, value: 'gate' },
+            { name: 'Access Control', icon: Lock, value: 'access', img: '/images/door.png' },
+            { name: 'Surveillance', icon: Camera, value: 'cctv', img: '/images/cctv.png' },
+            { name: 'Power Autonomy', icon: Zap, value: 'solar', img: '/images/solar-work.png' },
+            { name: 'Gate Automation', icon: Shield, value: 'gate', img: '/images/gate-work.png' },
         ]
     }
 ];
@@ -104,14 +105,27 @@ export default function SecurityConfigurator() {
                                 </div>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    {steps[currentStep].options.map((option) => (
+                                    {steps[currentStep].options.map((option: any) => (
                                         <button
                                             key={option.value}
                                             onClick={() => handleSelect(steps[currentStep].id, option.value)}
-                                            className="p-8 border border-white/10 bg-white/[0.02] hover:bg-linos-gold hover:border-linos-gold flex flex-col items-center group transition-all"
+                                            className="relative group h-64 overflow-hidden border border-white/10 flex flex-col items-center justify-center p-8 transition-all"
                                         >
-                                            <option.icon className="w-10 h-10 text-linos-gold group-hover:text-linos-black mb-6 transition-colors" />
-                                            <span className="text-xs font-bold text-white group-hover:text-linos-black uppercase tracking-widest">{option.name}</span>
+                                            {option.img && (
+                                                <>
+                                                    <Image
+                                                        src={option.img}
+                                                        alt={option.name}
+                                                        fill
+                                                        className="object-cover opacity-30 group-hover:opacity-60 transition-opacity duration-700 group-hover:scale-110"
+                                                    />
+                                                    <div className="absolute inset-0 bg-linos-black/50 group-hover:bg-linos-gold/20 transition-colors duration-700" />
+                                                </>
+                                            )}
+                                            <div className="relative z-10 flex flex-col items-center">
+                                                <option.icon className="w-12 h-12 text-linos-gold mb-6 group-hover:scale-110 transition-transform" />
+                                                <span className="text-xs font-bold text-white uppercase tracking-widest">{option.name}</span>
+                                            </div>
                                         </button>
                                     ))}
                                 </div>
