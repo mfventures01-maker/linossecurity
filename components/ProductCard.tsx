@@ -13,13 +13,17 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-    const [imgSrc, setImgSrc] = React.useState(product.image);
+    const [imgSrc, setImgSrc] = React.useState(product?.image || '');
     const [imgError, setImgError] = React.useState(false);
 
-    const isQuoteOnly = product.price === 'Get Quote';
-    const whatsappUrl = product.whatsapp.startsWith('http')
-        ? product.whatsapp
-        : WHATSAPP_LINKS.orderMessage(product.name);
+    const price = String(product?.price || '');
+    const isQuoteOnly = price.toLowerCase().includes('quote') || !price || price === 'nan';
+
+    const whatsapp = product?.whatsapp || '';
+    const name = product?.name || 'Asset';
+    const whatsappUrl = whatsapp.startsWith('http')
+        ? whatsapp
+        : WHATSAPP_LINKS.orderMessage(name);
 
     return (
         <div className="group relative bg-white/[0.02] border border-white/5 hover:border-linos-gold/30 transition-all duration-500 overflow-hidden h-full flex flex-col">
@@ -77,7 +81,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 {isQuoteOnly ? (
                                     <span className="text-linos-gold text-sm tracking-widest uppercase italic">Price on Request</span>
                                 ) : (
-                                    <>₦{Number(product.price).toLocaleString()}</>
+                                    <>₦{Number(String(product?.price || '').replace(/[₦,]/g, '')).toLocaleString()}</>
                                 )}
                             </span>
                         </div>

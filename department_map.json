@@ -1,0 +1,26 @@
+{
+  "Customer Facing": [
+    "app/page.tsx",
+    "app/shop/page.tsx",
+    "app/product/"
+  ],
+  "Admin/Management": [
+    "app/admin/"
+  ],
+  "API Services": [],
+  "Data Layer": [
+    "app\\layout.tsx: export const metadata",
+    "lib\\blog.ts: export const getAllPosts",
+    "lib\\blog.ts: export const getPostBySlug",
+    "lib\\products.ts: export const getAllProducts",
+    "lib\\products.ts: export const getProductBySlug",
+    "lib\\products.ts: export const getProductsByCategory",
+    "lib\\products.ts: export const getCategories"
+  ],
+  "UI Components": [
+    "components\\SEO\\JsonLd.tsx: export const generateOrganizationSchema",
+    "components\\SEO\\JsonLd.tsx: export const generateLocalBusinessSchema",
+    "components\\SEO\\JsonLd.tsx: export const generateProductSchema",
+    "components\\SEO\\JsonLd.tsx: export const generateBreadcrumbSchema"
+  ]
+}

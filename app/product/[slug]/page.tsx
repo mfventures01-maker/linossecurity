@@ -51,16 +51,26 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     const { slug } = await params;
 
     // Find product by slug with null check
-    const product = products.find(p => p.product_slug === slug);
+    const rawProduct = products.find(p => p.product_slug === slug || (p as any).slug === slug);
 
     // Handle 404
-    if (!product) {
+    if (!rawProduct) {
         notFound();
     }
 
+    // Safe product with defaults
+    const product = {
+        ...rawProduct,
+        product: (rawProduct as any).name || rawProduct.product || 'Unnamed Asset',
+        description: rawProduct.description || '',
+        price: rawProduct.price || 'Call for Quote',
+        photo_url: rawProduct.photo_url || (rawProduct as any).image || '',
+        category: rawProduct.category || 'General',
+        whatsapp_cta_link: rawProduct.whatsapp_cta_link || (rawProduct as any).whatsapp || `https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20${encodeURIComponent((rawProduct as any).name || rawProduct.product || 'Asset')}`
+    };
+
     // Determine availability status using multiple checks
-    const isValidPrice = hasValidPrice(product);
-    const availabilityStatus = isValidPrice ? 'in-stock' : 'call-for-quote';
+    const isValidPrice = hasValidPrice(product as any);
     const displayPrice = (() => {
         if (!isValidPrice) return 'Call for Quote';
         if (typeof product.price === 'number') return `₦${product.price.toLocaleString()}`;
@@ -271,9 +281,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 // GENERATE STATIC PATHS FOR BUILD
 // ============================================
 export async function generateStaticParams() {
-    return products.map((product) => ({
-        slug: product.product_slug,
-    }));
+    return (products || []).map((product) => ({
+        slug: product?.product_slug || (product as any)?.slug,
+    })).filter(p => p.slug);
 }
 
 // ============================================
@@ -281,7 +291,7 @@ export async function generateStaticParams() {
 // ============================================
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const product = products.find(p => p.product_slug === slug);
+    const product = products.find(p => p?.product_slug === slug || (p as any)?.slug === slug);
 
     if (!product) {
         return {
@@ -291,12 +301,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     return {
-        title: product.meta_title || `${product.product} | Linos E' Security`,
-        description: product.meta_description || product.seo_description || product.description,
+        title: product?.meta_title || `${product?.product || (product as any)?.name} | Linos E' Security`,
+        description: product?.meta_description || product?.seo_description || product?.description,
         openGraph: {
-            title: product.meta_title || product.product,
-            description: product.meta_description || product.description,
-            images: product.photo_url ? [product.photo_url] : [],
+            title: product?.meta_title || product?.product || (product as any)?.name,
+            description: product?.meta_description || product?.description,
+            images: product?.photo_url ? [product?.photo_url] : [],
         },
     };
 }

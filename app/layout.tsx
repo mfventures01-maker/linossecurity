@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd, { generateOrganizationSchema } from "@/components/SEO/JsonLd";
 import { BUSINESS_DETAILS } from "@/config/business";
+import { aiSearchMetadata } from "./ai-search-metadata";
+
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -35,6 +37,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <JsonLd data={generateOrganizationSchema(BUSINESS_DETAILS)} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(aiSearchMetadata) }}
+        />
       </head>
       <body
         className={`${montserrat.variable} ${inter.variable} antialiased`}

@@ -2,11 +2,10 @@
   command = "npm run build"
   publish = ".next"
 
-# Node.js version lock for Netlify build consistency
 [build.environment]
   NODE_VERSION = "20"
-  NPM_FLAGS = "--version"
-  GOOGLE_SHEETS_PRODUCT_URL = "https://script.google.com/macros/s/AKfycbwxKNUe9MPK_vlXqB8k8lS4Z6_MccooOkJEzUYtCsI673mHd5VMki1y1qxSanJPj2ez/exec"
+  NPM_FLAGS = "--legacy-peer-deps"
+  GOOGLE_SHEETS_PRODUCT_URL = "https://script.google.com/macros/s/AKfycbwj57zDGnWB4H3_x6ghLsLdyYcyB-aGLUxWXcUo5pzwXMwJ5QkbGHIWz3SP5V5DBCSJ/exec"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

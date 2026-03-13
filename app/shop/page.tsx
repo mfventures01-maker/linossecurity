@@ -13,12 +13,21 @@ export default function ShopPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const allProducts = getAllProducts();
 
-    // Use categories directly from the products
-    const categories = ['All', ...Array.from(new Set(allProducts.map(p => p.category).filter(Boolean)))].sort();
+    // Ensure this pattern is used for safety
+    const safeProducts = (allProducts || []).map(p => ({
+        ...p,
+        name: p?.name || p?.product || 'Unnamed Product',
+        category: p?.category || 'General',
+        price: p?.price || 'Call for Quote',
+        product_slug: p?.product_slug || p?.slug || ''
+    })).filter(p => p.product_slug);
 
-    const filteredProducts = allProducts.filter(p => {
-        const matchesCategory = activeCategory === 'All' || p?.category === activeCategory;
-        const name = p?.name || p?.product || '';
+    // Use categories directly from the products
+    const categories = ['All', ...Array.from(new Set(safeProducts.map(p => p.category).filter(Boolean)))].sort();
+
+    const filteredProducts = safeProducts.filter(p => {
+        const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
+        const name = p.name;
         const matchesSearch = name.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
     });
