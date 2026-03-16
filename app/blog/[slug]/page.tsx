@@ -8,7 +8,7 @@ import JsonLd, { generateArticleSchema, generateFAQSchema, generateBreadcrumbSch
 import { ChevronLeft, Calendar, User, Clock, ShieldCheck, ArrowRight, MessageSquare } from 'lucide-react';
 
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-    const post = getPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = getPostBySlug(slug);
     if (!post) return {};
 
     return {
@@ -35,12 +36,13 @@ export async function generateMetadata({ params }: Props) {
     };
 }
 
-export default function BlogPostPage({ params }: Props) {
-    const post = getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+    const { slug } = await params;
+    const post = getPostBySlug(slug);
 
     if (!post) notFound();
 
-    const schemas = [
+    const schemas: any[] = [
         generateArticleSchema(post, BUSINESS_DETAILS),
         generateBreadcrumbSchema([
             { name: 'Home', url: BUSINESS_DETAILS.website },

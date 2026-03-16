@@ -23,7 +23,8 @@ export async function getProducts(): Promise<Product[]> {
             return localProducts.map(p => {
                 const match = remotePrices.find(rp => rp.id === p.product_slug);
                 if (match) {
-                    return { ...p, price: String(match.price), availability: match.availability || 'in-stock' };
+                    const availability = match.availability as any;
+                    return { ...p, price: String(match.price), availability: availability || 'in-stock' };
                 }
                 return p;
             });

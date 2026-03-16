@@ -15,10 +15,16 @@ export default function AdminBlogList() {
             slug: '',
             title: '',
             excerpt: '',
-            date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
+            metaTitle: '',
+            metaDescription: '',
+            focusKeyword: '',
+            secondaryKeywords: [],
+            publishDate: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
             author: 'Technical Support',
             readTime: '5 min read',
-            content: ''
+            content: '',
+            coverImage: '/images/hero/default.png',
+            schemaType: 'Article'
         });
         setIsEditorOpen(true);
     };
@@ -82,7 +88,7 @@ export default function AdminBlogList() {
                                         </span>
                                     </td>
                                     <td className="px-10 py-8 text-[10px] text-white/40 font-bold uppercase tracking-widest">
-                                        {post.date}
+                                        {post.publishDate}
                                     </td>
                                     <td className="px-10 py-8">
                                         <div className="flex items-center space-x-2">

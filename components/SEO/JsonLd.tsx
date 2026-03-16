@@ -91,7 +91,7 @@ export const generateProductSchema = (product: any, business: any) => ({
         '@type': 'Offer',
         'url': `${business.website}/product/${product.slug}`,
         'priceCurrency': 'NGN',
-        'price': product.price.replace(/[^0-9.]/g, ''),
+        'price': String(product.price).replace(/[^0-9.]/g, ''),
         'availability': product.availability === 'in-stock' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
         'seller': {
             '@type': 'Organization',

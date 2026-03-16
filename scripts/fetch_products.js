@@ -5,8 +5,8 @@ const GOOGLE_SHEETS_URL = process.env.GOOGLE_SHEETS_PRODUCT_URL;
 const outputFile = path.join(__dirname, '../data/products.json');
 
 if (!GOOGLE_SHEETS_URL) {
-    console.error('❌ Error: GOOGLE_SHEETS_PRODUCT_URL is not set.');
-    process.exit(1);
+    console.warn('⚠️ Warning: GOOGLE_SHEETS_PRODUCT_URL not found. Proceeding with local data.');
+    process.exit(0);
 }
 
 const targetUrl = GOOGLE_SHEETS_URL.includes('?')

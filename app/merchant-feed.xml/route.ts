@@ -21,7 +21,7 @@ export async function GET() {
       <g:image_link>${product.photo_url || product.image || `${baseUrl}/logo.png`}</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>${product.availability === 'in-stock' ? 'in stock' : 'out of stock'}</g:availability>
-      <g:price>${product.price.replace(/[^0-9.]/g, '')} NGN</g:price>
+      <g:price>${String(product.price).replace(/[^0-9.]/g, '')} NGN</g:price>
       <g:brand>${BUSINESS_DETAILS.name}</g:brand>
       <g:google_product_category>Home &amp; Garden &gt; Security &amp; Surveillance</g:google_product_category>
     </item>`).join('')}

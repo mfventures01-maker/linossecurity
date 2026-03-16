@@ -20,7 +20,9 @@ export interface BlogPost {
     author: string;
     publishDate: string;
     coverImage: string;
+    excerpt: string;
     content: string;
+    readTime?: string;
     faq?: BlogFAQ[];
     internalLinks?: InternalLink[];
     schemaType: string;

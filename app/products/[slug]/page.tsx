@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         return isNaN(numPrice) ? String(product.price) : `₦${numPrice.toLocaleString()}`;
     })();
 
-    const schemas = [
+    const schemas: any[] = [
         generateProductSchema(product, BUSINESS_DETAILS),
         generateBreadcrumbSchema([
             { name: 'Home', url: BUSINESS_DETAILS.website },
