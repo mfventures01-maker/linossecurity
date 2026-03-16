@@ -64,7 +64,10 @@ export default function Footer() {
                         <ul className="space-y-6">
                             <li className="flex items-start space-x-4">
                                 <MapPin className="w-5 h-5 text-linos-gold shrink-0" />
-                                <span className="text-white/40 text-sm leading-relaxed">{BUSINESS_DETAILS.address}</span>
+                                <div className="space-y-2">
+                                    <span className="text-white/40 text-sm leading-relaxed block">{BUSINESS_DETAILS.address}</span>
+                                    <a href="https://maps.google.com/?q=21+Blantyre+Street,+Wuse+2,+Abuja" target="_blank" rel="noopener noreferrer" className="text-linos-gold text-[10px] font-bold uppercase tracking-widest hover:underline">Open in Google Maps</a>
+                                </div>
                             </li>
                             <li className="flex items-center space-x-4">
                                 <Phone className="w-5 h-5 text-linos-gold shrink-0" />
@@ -89,12 +92,15 @@ export default function Footer() {
                             <span className="text-[10px] uppercase font-bold tracking-widest">Certified Security Infrastructure</span>
                         </div>
 
-                        {/* Hidden Admin Login Button (The Eagle) */}
+                        {/* Admin Portal Button */}
                         <Link
-                            href="/admin/login"
-                            className="relative w-8 h-8 rounded-full flex items-center justify-center p-1.5 grayscale opacity-20 hover:grayscale-0 hover:opacity-100 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all duration-700 bg-white/5"
+                            href="/admin"
+                            className="flex items-center space-x-2 px-3 py-1.5 border border-white/5 rounded-full text-white/20 hover:text-linos-gold hover:border-linos-gold/30 transition-all duration-300 group"
                         >
-                            <Image src="/logo.png" alt="Admin Relay" width={20} height={20} className="object-contain" />
+                            <span className="text-[8px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Admin Portal</span>
+                            <div className="w-6 h-6 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+                            </div>
                         </Link>
                     </div>
                 </div>

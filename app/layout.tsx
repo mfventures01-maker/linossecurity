@@ -3,7 +3,7 @@ import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import JsonLd, { generateOrganizationSchema } from "@/components/SEO/JsonLd";
+import JsonLd, { generateOrganizationSchema, generateLocalBusinessSchema } from "@/components/SEO/JsonLd";
 import { BUSINESS_DETAILS } from "@/config/business";
 import { aiSearchMetadata } from "./ai-search-metadata";
 
@@ -37,6 +37,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <JsonLd data={generateOrganizationSchema(BUSINESS_DETAILS)} />
+        <JsonLd data={generateLocalBusinessSchema(BUSINESS_DETAILS)} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(aiSearchMetadata) }}

@@ -1,107 +1,78 @@
-"use client";
-
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Shield, BookOpen, Clock, ArrowRight, User } from 'lucide-react';
+import Image from 'next/image';
+import { getAllPosts } from '@/lib/blog';
+import { BUSINESS_DETAILS } from '@/config/business';
+import JsonLd, { generateBreadcrumbSchema } from '@/components/SEO/JsonLd';
+import { ArrowRight, Calendar, User, Clock, Shield } from 'lucide-react';
 
-const mockPosts = [
-    {
-        title: "The Future of Security: AI-Driven Surveillance in Nigeria",
-        excerpt: "Discover how artificial intelligence is transforming security landscapes across Abuja and Lagos, providing proactive threat detection.",
-        category: "Surveillance",
-        author: "Engineering Lead",
-        date: "March 12, 2026",
-        slug: "future-of-security-ai"
-    },
-    {
-        title: "Energy Autonomy: Why Hybrid Solar is the Standard for Estate Security",
-        excerpt: "Estate security requires zero downtime. Learn why hybrid solar systems are the mission-critical foundation for Nigerian homes.",
-        category: "Solar Power",
-        author: "Power Architect",
-        date: "March 10, 2026",
-        slug: "energy-autonomy-solar"
-    },
-    {
-        title: "Mastering Access Control: Biometrics vs. Facial Recognition",
-        excerpt: "An in-depth look at the pros and cons of different biometric protocols for high-traffic corporate environments.",
-        category: "Access Control",
-        author: "Tech Relay",
-        date: "March 08, 2026",
-        slug: "biometrics-vs-facial-recognition"
-    }
-];
+export const metadata = {
+    title: 'Technical Intelligence Blog | Linos E Security Nigeria',
+    description: 'Expert insights on automatic doors, security automation, and protection architecture in Nigeria.',
+};
 
 export default function BlogPage() {
+    const posts = getAllPosts();
+
+    const breadcrumbs = generateBreadcrumbSchema([
+        { name: 'Home', url: BUSINESS_DETAILS.website },
+        { name: 'Blog', url: `${BUSINESS_DETAILS.website}/blog` }
+    ]);
+
     return (
-        <div className="bg-linos-black min-h-screen pt-40 pb-20">
+        <div className="bg-[#050505] min-h-screen pt-40 pb-20">
+            <JsonLd data={breadcrumbs} />
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-3xl mb-20 space-y-6">
-                    <div className="flex items-center space-x-2">
-                        <div className="h-[1px] w-12 bg-linos-gold"></div>
-                        <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.5em]">Technical Intelligence Hub</span>
+                <div className="text-center mb-24">
+                    <div className="flex items-center justify-center space-x-3 mb-6">
+                        <Shield className="w-5 h-5 text-linos-gold" />
+                        <span className="text-[10px] text-linos-gold font-bold uppercase tracking-[0.4em]">Knowledge Repository</span>
                     </div>
-                    <h1 className="text-4xl md:text-7xl font-display font-bold text-white uppercase leading-tight">
-                        Security <span className="text-linos-gold italic underline decoration-white/10">Insights</span> & Engineering.
+                    <h1 className="text-4xl md:text-7xl font-display font-bold text-white mb-8 uppercase tracking-tight">
+                        Technical <span className="text-linos-gold">Intelligence</span>
                     </h1>
-                    <p className="text-white/40 text-lg italic leading-relaxed font-light">
-                        Expert perspectives on the intersection of security automation, energy reliability, and premium facility management in Nigeria.
+                    <p className="text-white/40 max-w-2xl mx-auto font-bold uppercase tracking-widest text-[10px] leading-relaxed">
+                        Precision analysis on security architecture, automation engineering, and facility protection protocols for the West African market.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {mockPosts.map((post, i) => (
-                        <motion.article
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {posts.map((post) => (
+                        <Link
                             key={post.slug}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.1 }}
-                            className="flex flex-col h-full bg-white/[0.02] border border-white/5 hover:border-linos-gold/30 transition-all group"
+                            href={`/blog/${post.slug}`}
+                            className="group relative flex flex-col bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden hover:border-linos-gold/30 transition-all duration-700 hover:-translate-y-2"
                         >
-                            <div className="p-8 flex-grow space-y-6">
-                                <div className="flex justify-between items-center">
-                                    <span className="text-linos-gold text-[9px] font-bold uppercase tracking-widest bg-linos-gold/10 px-3 py-1 border border-linos-gold/20">
-                                        {post.category}
-                                    </span>
-                                    <div className="flex items-center text-white/20 text-[9px] font-bold uppercase tracking-widest">
-                                        <Clock className="w-3 h-3 mr-2" />
-                                        {post.date}
-                                    </div>
-                                </div>
+                            <div className="relative h-64 overflow-hidden">
+                                <Image
+                                    src={post.coverImage}
+                                    alt={post.title}
+                                    fill
+                                    className="object-cover group-hover:scale-110 transition-transform duration-1000 opacity-60 group-hover:opacity-100"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
+                            </div>
 
-                                <h2 className="text-xl font-bold text-white uppercase tracking-wider group-hover:text-linos-gold transition-colors leading-tight">
+                            <div className="p-10 flex-grow flex flex-col">
+                                <div className="flex items-center space-x-4 mb-6 text-[8px] text-white/30 font-bold uppercase tracking-widest">
+                                    <span className="text-linos-gold">{post.publishDate}</span>
+                                    <span>•</span>
+                                    <span>{post.author}</span>
+                                </div>
+                                <h2 className="text-xl font-display font-bold text-white mb-6 uppercase tracking-widest leading-relaxed group-hover:text-linos-gold transition-colors">
                                     {post.title}
                                 </h2>
-
-                                <p className="text-white/40 text-sm italic leading-relaxed line-clamp-3">
-                                    {post.excerpt}
+                                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest leading-relaxed mb-8 italic line-clamp-2">
+                                    {post.metaDescription}
                                 </p>
-                            </div>
-
-                            <div className="p-8 pt-0 mt-auto">
-                                <div className="flex items-center justify-between pt-8 border-t border-white/5">
-                                    <div className="flex items-center space-x-3">
-                                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                                            <User className="w-4 h-4 text-linos-gold" />
-                                        </div>
-                                        <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">{post.author}</span>
-                                    </div>
-                                    <Link href={`/blog/${post.slug}`} className="text-linos-gold hover:text-white transition-colors">
-                                        <ArrowRight className="w-5 h-5" />
-                                    </Link>
+                                <div className="mt-auto flex items-center text-[10px] text-linos-gold font-bold uppercase tracking-[0.2em]">
+                                    Analyze Intel <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-2 transition-transform" />
                                 </div>
                             </div>
-                        </motion.article>
+                        </Link>
                     ))}
-                </div>
-
-                <div className="mt-32 p-12 border border-linos-gold/20 bg-linos-gold/[0.02] text-center">
-                    <BookOpen className="w-16 h-16 text-linos-gold/20 mx-auto mb-8" />
-                    <h3 className="text-2xl font-bold text-white uppercase tracking-widest mb-6">Want Custom Technical Audits?</h3>
-                    <p className="text-white/40 text-sm max-w-xl mx-auto italic mb-10 leading-relaxed">
-                        Our intelligence team performs on-site facility audits for estates, corporate HQs, and government infrastructures. Connect with a relay engineer today.
-                    </p>
-                    <Link href="/contact" className="btn-gold !px-12 uppercase font-bold tracking-[0.2em] text-xs">Access Engineering Relay</Link>
                 </div>
             </div>
         </div>

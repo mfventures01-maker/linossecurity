@@ -1,137 +1,167 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllProducts } from '@/lib/products';
-import { Product } from '@/types/product';
+import { getProducts, getAllProducts } from '@/lib/products';
+import { getAllPosts } from '@/lib/blog';
+import { BUSINESS_DETAILS } from '@/config/business';
+import JsonLd, { generateProductSchema, generateBreadcrumbSchema } from '@/components/SEO/JsonLd';
+import { Phone, MessageSquare, ShieldCheck, Truck, Clock, Wrench, ChevronRight, Star } from 'lucide-react';
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const products = getAllProducts();
+    const products = await getProducts();
+    const allPosts = getAllPosts();
 
-    // Find product by slug
+    // Find product
     const product = products.find(p => p.product_slug === slug || p.slug === slug);
 
     if (!product) {
         notFound();
     }
 
+    // Related blog posts
+    const relatedPosts = allPosts.filter(post =>
+        post.focusKeyword.toLowerCase().includes(product.category.toLowerCase()) ||
+        product.description.toLowerCase().includes(post.focusKeyword.toLowerCase())
+    ).slice(0, 2);
+
     const isValidPrice = !String(product.price).toLowerCase().includes('quote') && product.price !== '';
 
     const displayPrice = (() => {
         if (!isValidPrice) return 'Call for Quote';
-        if (typeof product.price === 'number') return `₦${product.price.toLocaleString()}`;
         const cleanPrice = String(product.price).replace(/[₦,]/g, '');
         const numPrice = parseFloat(cleanPrice);
         return isNaN(numPrice) ? String(product.price) : `₦${numPrice.toLocaleString()}`;
     })();
 
+    const schemas = [
+        generateProductSchema(product, BUSINESS_DETAILS),
+        generateBreadcrumbSchema([
+            { name: 'Home', url: BUSINESS_DETAILS.website },
+            { name: 'Products', url: `${BUSINESS_DETAILS.website}/shop` },
+            { name: product.name, url: `${BUSINESS_DETAILS.website}/products/${slug}` }
+        ])
+    ];
+
     return (
-        <div className="min-h-screen bg-linos-black text-white">
-            <main className="container mx-auto px-4 pt-32 pb-24">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="min-h-screen bg-linos-black text-white pt-32 pb-24">
+            {schemas.map((s, i) => <JsonLd key={i} data={s} />)}
 
-                    {/* IMAGE SECION */}
-                    <div className="space-y-6">
-                        <div className="relative aspect-square border border-white/10 p-2 group overflow-hidden bg-white/[0.01]">
-                            <div className="w-full h-full border border-linos-gold/20 bg-linos-black relative overflow-hidden">
-                                <Image
-                                    src={product.image || product.photo_url || '/placeholder.jpg'}
-                                    alt={product.name || product.product}
-                                    fill
-                                    className="object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-                                    priority
-                                />
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
 
-                                <div className="absolute top-8 left-8 flex flex-col gap-2">
-                                    <span className="bg-linos-gold text-linos-black text-[9px] font-bold px-4 py-1.5 uppercase tracking-widest shadow-2xl">Certified Security Asset</span>
-                                    <span className="bg-white/10 backdrop-blur-md text-white text-[9px] font-bold px-4 py-1.5 uppercase tracking-widest border border-white/10">Authorized Relay Node</span>
-                                </div>
+                    {/* Left: Media & Gallery */}
+                    <div className="space-y-10">
+                        <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/5 bg-white/[0.01]">
+                            <Image
+                                src={product.image || product.photo_url || '/placeholder.jpg'}
+                                alt={product.name}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-all duration-1000"
+                                priority
+                            />
+                            <div className="absolute top-10 left-10">
+                                <span className="bg-linos-gold text-linos-black text-[9px] font-bold px-6 py-2 rounded-full uppercase tracking-widest shadow-2xl">Elite Asset</span>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-1">
-                            {['Militarty-Grade', 'Authorized Hub', 'Global Compliance'].map((tag) => (
-                                <div key={tag} className="border border-white/5 py-4 text-center">
-                                    <span className="text-[8px] text-white/20 uppercase font-bold tracking-[0.3em]">{tag}</span>
+                        {/* Trust Badges */}
+                        <div className="grid grid-cols-3 gap-6">
+                            {[
+                                { icon: ShieldCheck, label: 'NNSA Certified' },
+                                { icon: Wrench, label: 'Pro Installation' },
+                                { icon: Clock, label: '24/7 Monitoring' }
+                            ].map((badge, i) => (
+                                <div key={i} className="flex flex-col items-center p-6 bg-white/[0.02] border border-white/5 rounded-3xl text-center">
+                                    <badge.icon className="w-5 h-5 text-linos-gold mb-3" />
+                                    <span className="text-[8px] text-white/40 uppercase font-bold tracking-widest">{badge.label}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* CONTENT SECTION */}
-                    <div className="flex flex-col space-y-10">
-                        <div className="space-y-4">
-                            <div className="flex items-center space-x-3">
-                                <div className="h-[1px] w-12 bg-linos-gold"></div>
-                                <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.4em]">Engineering Protocol: {product.category}</span>
-                            </div>
-                            <h1 className="text-5xl md:text-7xl font-display font-bold text-white uppercase leading-none">
-                                {product.name || product.product}
-                            </h1>
-                        </div>
-
-                        <div className="p-10 border border-linos-gold/20 bg-linos-gold/[0.03] space-y-4 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5">
-                                <svg className="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.41c-2.39-1.2-4.17-3.42-4.72-6.06.84-.44 1.81-.69 2.84-.74.19.14.39.27.6.38.44.22.92.35 1.44.35s1-.13 1.44-.35c.21-.11.41-.24.6-.38 1.03.05 2 .3 2.84.74-.55 2.64-2.33 4.86-4.72 6.06z" /></svg>
-                            </div>
-                            <span className="text-[10px] text-white/20 uppercase font-bold tracking-[0.4em] font-display italic">Asset Deployment Valuation</span>
-                            <div className="flex items-baseline gap-6">
-                                <span className="text-5xl font-display font-bold text-white">
-                                    {displayPrice}
-                                </span>
-                                {isValidPrice && (
-                                    <span className="text-green-500 text-[10px] font-bold uppercase tracking-widest bg-green-500/10 px-4 py-1 rounded-full border border-green-500/20">
-                                        NNSA Certified
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-
+                    {/* Right: Technical Specs & Conversion */}
+                    <div className="flex flex-col space-y-12">
                         <div className="space-y-6">
-                            <h2 className="text-[10px] font-bold text-linos-gold uppercase tracking-[0.5em] italic">Technical Summary</h2>
-                            <p className="text-white/40 text-lg italic leading-relaxed font-light">
-                                {product.description}
-                            </p>
+                            <div className="flex items-center space-x-3">
+                                <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.5em]">{product.category} Protocols</span>
+                            </div>
+                            <h1 className="text-4xl md:text-6xl font-display font-bold text-white uppercase tracking-tight leading-none">
+                                {product.name}
+                            </h1>
+                            <div className="flex items-center space-x-2">
+                                {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-linos-gold text-linos-gold" />)}
+                                <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest ml-4">5.0 | Peer Validated Architecture</span>
+                            </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-white/5 pt-10">
-                            <a
-                                href={product.whatsapp_cta_link || `https://wa.me/2348069423078?text=Hello%20Linos,%20I%20want%20to%20order%20the%20${encodeURIComponent(product.name || product.product)}`}
-                                className="btn-gold !py-6 flex items-center justify-center space-x-4 uppercase tracking-[0.3em] font-bold text-xs"
-                            >
-                                Initialize Deployment
-                            </a>
+                        <div className="p-10 bg-white/[0.02] border border-white/5 rounded-[2.5rem] relative overflow-hidden">
+                            <div className="flex flex-col space-y-2">
+                                <span className="text-[9px] text-white/20 uppercase font-bold tracking-widest">Pricing Relay</span>
+                                <div className="flex items-baseline gap-4">
+                                    <span className="text-5xl font-display font-bold text-white leading-none">{displayPrice}</span>
+                                    {isValidPrice && <span className="text-[10px] text-linos-gold font-bold uppercase tracking-widest">+ Pro Deployment</span>}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-8">
+                            <h3 className="text-xs font-bold text-white uppercase tracking-widest border-l-2 border-linos-gold pl-6">Technical Brief</h3>
+                            <p className="text-white/60 text-lg leading-relaxed">{product.description}</p>
+                        </div>
+
+                        {/* Conversion Matrix */}
+                        <div className="space-y-4 pt-10 border-t border-white/5">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <a
+                                    href={`https://wa.me/${BUSINESS_DETAILS.whatsapp}?text=Initialize%20deployment%20protocol%20for%20${encodeURIComponent(product.name)}`}
+                                    className="btn-gold !py-6 flex items-center justify-center space-x-4 uppercase tracking-[0.3em] font-bold text-[10px]"
+                                >
+                                    <MessageSquare className="w-4 h-4" />
+                                    <span>Sync via WhatsApp</span>
+                                </a>
+                                <a
+                                    href={`tel:${BUSINESS_DETAILS.phone}`}
+                                    className="btn-outline !py-6 flex items-center justify-center space-x-4 uppercase tracking-[0.3em] font-bold text-[10px]"
+                                >
+                                    <Phone className="w-4 h-4" />
+                                    <span>Priority Relay</span>
+                                </a>
+                            </div>
                             <Link
                                 href="/contact"
-                                className="btn-outline !py-6 flex items-center justify-center space-x-4 uppercase tracking-[0.3em] font-bold text-xs italic"
+                                className="flex items-center justify-center w-full py-5 text-[9px] text-white/20 uppercase font-bold tracking-[0.4em] hover:text-linos-gold transition-colors"
                             >
-                                Technical Audit
+                                Request Technical Audit & Site Survey <ChevronRight className="w-3 h-3 ml-2" />
                             </Link>
                         </div>
+
+                        {/* Related Blog Posts */}
+                        {relatedPosts.length > 0 && (
+                            <div className="pt-16 space-y-8">
+                                <h3 className="text-xs font-bold text-white uppercase tracking-widest">Intelligence Briefings</h3>
+                                <div className="grid grid-cols-1 gap-4">
+                                    {relatedPosts.map(post => (
+                                        <Link
+                                            key={post.slug}
+                                            href={`/blog/${post.slug}`}
+                                            className="flex items-center space-x-6 p-6 bg-white/5 border border-white/5 rounded-3xl group hover:border-linos-gold/30 transition-all"
+                                        >
+                                            <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0">
+                                                <Image src={post.coverImage} alt={post.title} fill className="object-cover" />
+                                            </div>
+                                            <div>
+                                                <h4 className="text-[10px] text-white font-bold uppercase tracking-widest leading-relaxed mb-2 group-hover:text-linos-gold transition-colors">{post.title}</h4>
+                                                <p className="text-[8px] text-white/30 uppercase font-bold tracking-widest italic">{post.publishDate} • Tech Analysis</p>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </main>
-
-            {/* SCHEMA */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org/",
-                        "@type": "Product",
-                        "name": product.name || product.product,
-                        "image": product.image || product.photo_url,
-                        "description": product.description,
-                        "brand": { "@type": "Brand", "name": "Linos E' Security Ltd" },
-                        "offers": {
-                            "@type": "Offer",
-                            "price": isValidPrice ? String(product.price).replace(/[₦,]/g, '') : "0",
-                            "priceCurrency": "NGN",
-                            "availability": isValidPrice ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
-                        }
-                    })
-                }}
-            />
         </div>
     );
 }
@@ -140,7 +170,7 @@ export async function generateStaticParams() {
     const products = getAllProducts();
     return products.map((product) => ({
         slug: product.product_slug || product.slug,
-    }));
+    })).filter(p => p.slug);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -151,7 +181,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!product) return { title: 'Asset Not Found' };
 
     return {
-        title: product.meta_title || `${product.name || product.product} | Linos E' Security`,
-        description: product.meta_description || product.description,
+        title: `${product.name} | Security Infrastructure Nigeria`,
+        description: product.description.substring(0, 160),
     };
 }

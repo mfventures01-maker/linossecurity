@@ -12,19 +12,19 @@ const projects = [
         desc: "Advanced sensor calibration for estate-wide security protocols."
     },
     {
-        url: "/images/solar-work.png",
-        title: "Energy Autonomy",
-        desc: "Precision installation of hybrid mission-critical energy systems."
+        url: "https://i.postimg.cc/85JVkD3W/lin-os-men-on-duty.png",
+        title: "Field Deployment",
+        desc: "Linos engineering team executing high-precision hardware integration."
     },
     {
-        url: "/images/cctv-work.png",
+        url: "https://i.postimg.cc/L69FKJL3/droplets-cctv-installaton-in-port-harcourt-ip-cameras-hikvision-cameras-8-channel-CCTV-system-plus-i.jpg",
         title: "Optical Supremacy",
         desc: "AI-driven surveillance calibration for high-threat environments."
     },
     {
-        url: "/images/gate-work.png",
-        title: "Entry Logic",
-        desc: "Zero-latency automation tuning for armored entry points."
+        url: "https://i.postimg.cc/763Hgbcn/d3-smart-gate-machine.jpg",
+        title: "Automation Logic",
+        desc: "Zero-latency synchronization for armored entry points."
     }
 ];
 

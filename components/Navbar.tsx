@@ -9,9 +9,9 @@ import { BUSINESS_DETAILS } from '@/config/business';
 
 const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Shop', href: '/shop' },
+    { name: 'Products', href: '/shop' },
     {
-        name: 'Expertise', href: '/services', dropdown: [
+        name: 'Solutions', href: '/services', dropdown: [
             { name: 'CCTV Surveillance', href: '/services/cctv-installation' },
             { name: 'Access Control', href: '/services/access-control-installation' },
             { name: 'Solar Power', href: '/services/solar-power-installation' },
@@ -19,8 +19,8 @@ const navLinks = [
             { name: 'Turnstile Systems', href: '/services/turnstile-installation' },
         ]
     },
-    { name: 'Locations', href: '/locations' },
-    { name: 'Technical Hub', href: '/blog' },
+    { name: 'Projects', href: '/locations' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
 ];
 

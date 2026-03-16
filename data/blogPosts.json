@@ -1,0 +1,71 @@
+{
+    "posts": [
+        {
+            "title": "Automatic Sliding Doors in Nigeria: The Ultimate Security Guide",
+            "slug": "automatic-sliding-doors-nigeria",
+            "metaTitle": "Automatic Sliding Doors Nigeria | Professional Installation & Cost",
+            "metaDescription": "Discover the benefits of professional automatic sliding door installation for luxury homes and corporate offices in Nigeria. Security, elegance, and AI-driven access.",
+            "focusKeyword": "automatic sliding doors Nigeria",
+            "secondaryKeywords": [
+                "glass sliding doors Nigeria",
+                "automatic door installation Lagos",
+                "commercial sliding door systems Abuja",
+                "biometric sliding doors"
+            ],
+            "author": "Linos Engineering Team",
+            "publishDate": "2026-03-15",
+            "coverImage": "/images/hero/sliding-doors.png",
+            "content": "<h2>Engineered Elegance: The Rise of Automatic Portals</h2><p>In the evolving landscape of Nigerian architecture, automatic sliding doors have transitioned from luxury amenities to essential security components. At Linos E Security, we specialize in high-precision sensor systems that integrate seamlessly with biometric authority.</p><h3>Why Automate Your Entrance?</h3><p>Beyond the obvious aesthetic elevation, automation provides hands-free operation—critical for high-traffic environments—and ensures that portals are never left unsecured due to human oversight.</p>",
+            "faq": [
+                {
+                    "question": "What is the cost of automatic sliding door installation in Nigeria?",
+                    "answer": "Costs vary based on the span and sensor precision. Contact our engineering team for a site-specific technical audit."
+                },
+                {
+                    "question": "Can existing glass doors be automated?",
+                    "answer": "In most cases, yes. We can retrofit high-tourque brushless motors onto existing structural glass assemblies."
+                }
+            ],
+            "internalLinks": [
+                {
+                    "text": "View Access Control Systems",
+                    "href": "/shop?category=access-control"
+                },
+                {
+                    "text": "Contact an Engineer",
+                    "href": "/contact"
+                }
+            ],
+            "schemaType": "Article"
+        },
+        {
+            "title": "Smart Gate Automation: Precision Security for Modern Estates",
+            "slug": "smart-gate-automation-nigeria",
+            "metaTitle": "Smart Gate Automation Nigeria | Secure Automated Gate Motors",
+            "metaDescription": "Upgrade your estate security with smart gate automation. High-tourque motors and remote smartphone access for luxury gated communities in Nigeria.",
+            "focusKeyword": "smart gate automation Nigeria",
+            "secondaryKeywords": [
+                "automated gate motors Abuja",
+                "remote gate access Nigeria",
+                "solar gate motors Nigeria"
+            ],
+            "author": "Linos Security Authority",
+            "publishDate": "2026-03-10",
+            "coverImage": "/images/hero/smart-gate.png",
+            "content": "<p>Security at the perimeter is the first line of defense. Our smart gate systems utilize hybrid power and encrypted signal relays to ensure your estate remains a fortress.</p>",
+            "faq": [
+                {
+                    "question": "Does gate automation work during power outages?",
+                    "answer": "Our systems are equipped with dedicated battery backups and optional solar charging arrays for 100% uptime."
+                }
+            ],
+            "internalLinks": [
+                {
+                    "text": "Solar Gate Motors",
+                    "href": "/shop?category=solar"
+                }
+            ],
+            "schemaType": "TechArticle"
+        }
+    ]
+}

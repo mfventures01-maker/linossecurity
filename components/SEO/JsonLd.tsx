@@ -110,3 +110,44 @@ export const generateBreadcrumbSchema = (items: { name: string; url: string }[])
         'item': item.url
     }))
 });
+
+export const generateArticleSchema = (post: any, business: any) => ({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "image": [
+        `${business.website}${post.coverImage}`
+    ],
+    "datePublished": post.publishDate,
+    "author": {
+        "@type": "Organization",
+        "name": post.author || business.name,
+        "url": business.website
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": business.name,
+        "logo": {
+            "@type": "ImageObject",
+            "url": `${business.website}/logo.png`
+        }
+    },
+    "description": post.metaDescription,
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${business.website}/blog/${post.slug}`
+    }
+});
+
+export const generateFAQSchema = (faqs: { question: string; answer: string }[]) => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+        }
+    }))
+});

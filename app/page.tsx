@@ -10,10 +10,10 @@ import { Shield, Zap, Camera, Lock, ArrowRight, CheckCircle2, Star, ShieldAlert,
 import { BUSINESS_DETAILS } from '@/config/business';
 
 const specialties = [
-  { name: 'CCTV Systems', icon: Camera, desc: 'AI-Powered 4K Surveillance & Analytics' },
-  { name: 'Security Doors', icon: Lock, desc: 'Smart Biometric & Multi-Point Locking' },
-  { name: 'Gate Automation', icon: Shield, desc: 'High-Speed Smart Motor Integration' },
-  { name: 'Solar Power', icon: Zap, desc: 'Mission-Critical Hybrid Energy Systems' },
+  { name: 'CCTV Systems', icon: Camera, desc: 'AI-Powered 4K Surveillance & Analytics', img: 'https://i.postimg.cc/L69FKJL3/droplets-cctv-installaton-in-port-harcourt-ip-cameras-hikvision-cameras-8-channel-CCTV-system-plus-i.jpg' },
+  { name: 'Security Doors', icon: Lock, desc: 'Smart Biometric & Multi-Point Locking', img: 'https://i.postimg.cc/8cBM7pND/Digital-door-lock.jpg' },
+  { name: 'Gate Automation', icon: Shield, desc: 'High-Speed Smart Motor Integration', img: 'https://i.postimg.cc/763Hgbcn/d3-smart-gate-machine.jpg' },
+  { name: 'Solar Power', icon: Zap, desc: 'Mission-Critical Hybrid Energy Systems', img: 'https://i.postimg.cc/Jz69jvpM/1.5-KWzhutu2-800-800.jpg' },
 ];
 
 export default function Home() {
@@ -36,7 +36,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <div className="inline-flex items-center space-x-2 bg-linos-gold/10 border border-linos-gold/20 px-4 py-2 rounded-sm mb-8">
-                <ShieldCheckIcon className="w-4 h-4 text-linos-gold" />
+                <CheckCircle2 className="w-4 h-4 text-linos-gold" />
                 <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.3em]">Official Security Infrastructure</span>
               </div>
 
@@ -86,28 +86,29 @@ export default function Home() {
             >
               <div className="relative rounded-sm overflow-hidden border border-linos-gold/20 aspect-[4/5] bg-[#0A0A0A] group shadow-2xl shadow-linos-gold/5">
                 <Image
-                  src="https://i.postimg.cc/mrntpp4J/linos_man_working_on_estate_security.png"
-                  alt="Linos Security Engineer at Work"
+                  src="https://i.postimg.cc/L69FKJL3/droplets-cctv-installaton-in-port-harcourt-ip-cameras-hikvision-cameras-8-channel-CCTV-system-plus-i.jpg"
+                  alt="Linos Integrated CCTV Deployment"
                   fill
-                  className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000"
+                  className="object-cover group-hover:scale-105 transition-all duration-1000"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent opacity-60" />
 
                 <div className="absolute bottom-8 left-8 right-8 p-8 glass-panel rounded-sm text-left">
                   <div className="flex items-center space-x-4">
-                    <div className="bg-linos-gold p-3 rounded-full shadow-lg shadow-linos-gold/20">
-                      <Cpu className="w-6 h-6 text-linos-black" />
+                    <div className="bg-linos-gold p-3 rounded-full shadow-lg shadow-linos-gold/20 rotate-12">
+                      <Lock className="w-6 h-6 text-linos-black" />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold uppercase tracking-[0.2em] text-[10px]">Industrial Integration</h4>
-                      <p className="text-white/40 text-[9px] uppercase font-bold tracking-[0.3em] mt-1">Solar & Gate Automation</p>
+                      <h4 className="text-white font-bold uppercase tracking-[0.2em] text-[10px]">Elite Security Systems</h4>
+                      <p className="text-white/40 text-[9px] uppercase font-bold tracking-[0.3em] mt-1">Authorized Deployment Center</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Decorative elements */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 border border-linos-gold/20 rounded-full" />
+              <div className="absolute -top-10 -right-10 w-40 h-40 border border-linos-gold/20 rounded-full animate-pulse" />
               <div className="absolute -bottom-10 -left-10 w-20 h-20 bg-linos-gold flex items-center justify-center p-4 shadow-2xl z-20">
                 <Shield className="w-full h-full text-linos-black" />
               </div>
@@ -125,16 +126,24 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {specialties.map((item, i) => (
+            {[
+              { name: 'CCTV Systems', icon: Camera, desc: 'AI-Powered 4K Surveillance & Analytics', img: '/images/products/cctv-system.png' },
+              { name: 'Security Doors', icon: Lock, desc: 'Smart Biometric & Multi-Point Locking', img: '/images/products/sliding-door.png' },
+              { name: 'Gate Automation', icon: Shield, desc: 'High-Speed Smart Motor Integration', img: '/images/products/solar-gate-motor.png' },
+              { name: 'Power Systems', icon: Zap, desc: 'Mission-Critical Hybrid Energy Systems', img: '/images/products/solar-gate-motor.png' }, // Reusing or need a solar one
+            ].map((item, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -10 }}
-                className="p-10 border border-white/5 bg-white/[0.02] hover:bg-linos-gold/10 hover:border-linos-gold/30 transition-all group"
+                className="relative p-10 border border-white/5 bg-white/[0.02] hover:bg-linos-gold/10 hover:border-linos-gold/30 transition-all group overflow-hidden"
               >
-                <item.icon className="w-10 h-10 text-linos-gold mb-8 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-widest leading-tight">{item.name}</h3>
-                <p className="text-white/30 text-xs mb-8 leading-relaxed italic font-light">{item.desc}</p>
-                <Link href="/services" className="text-linos-gold text-[9px] font-bold uppercase tracking-[0.3em] flex items-center hover:translate-x-2 transition-transform">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity">
+                  <Image src={item.img} alt={item.name} fill className="object-cover" />
+                </div>
+                <item.icon className="relative z-10 w-10 h-10 text-linos-gold mb-8 group-hover:scale-110 transition-transform" />
+                <h3 className="relative z-10 text-xl font-bold text-white mb-4 uppercase tracking-widest leading-tight">{item.name}</h3>
+                <p className="relative z-10 text-white/30 text-xs mb-8 leading-relaxed italic font-light">{item.desc}</p>
+                <Link href="/services" className="relative z-10 text-linos-gold text-[9px] font-bold uppercase tracking-[0.3em] flex items-center hover:translate-x-2 transition-transform">
                   Specifications <ArrowRight className="w-3 h-3 ml-2" />
                 </Link>
               </motion.div>
@@ -165,7 +174,7 @@ export default function Home() {
               className="md:col-span-12 lg:col-span-8 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="/images/cctv-work.png"
+                src="https://i.postimg.cc/L69FKJL3/droplets-cctv-installaton-in-port-harcourt-ip-cameras-hikvision-cameras-8-channel-CCTV-system-plus-i.jpg"
                 alt="AI Surveillance"
                 fill
                 className="object-cover group-hover:scale-105 transition-all duration-1000 opacity-80 group-hover:opacity-100"
@@ -173,9 +182,9 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity" />
               <div className="absolute bottom-10 left-10 space-y-4">
                 <span className="text-linos-gold text-[9px] font-bold uppercase tracking-widest bg-linos-black/50 px-3 py-1 border border-linos-gold/30">CCTV & Surveillance</span>
-                <h3 className="text-3xl font-bold text-white uppercase tracking-tighter shadow-sm shadow-black/80">AI-Driven <br /> Threat Detection</h3>
+                <h3 className="text-3xl font-bold text-white uppercase tracking-tighter shadow-sm shadow-black/80">Mission Critical <br /> Surveillance</h3>
                 <p className="text-white/60 text-sm max-w-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  4K Optical sensors with neural engine processing for real-time facility protection and behavioral analytics.
+                  4K Optical sensors with real-time facility protection and behavioral analytics.
                 </p>
               </div>
             </motion.div>
@@ -187,7 +196,7 @@ export default function Home() {
               className="md:col-span-6 lg:col-span-4 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="/images/solar-work.png"
+                src="https://i.postimg.cc/Jz69jvpM/1.5-KWzhutu2-800-800.jpg"
                 alt="Hybrid Solar"
                 fill
                 className="object-cover group-hover:scale-110 transition-all duration-1000 opacity-80 group-hover:opacity-100"
@@ -206,7 +215,7 @@ export default function Home() {
               className="md:col-span-6 lg:col-span-4 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="/images/gate-work.png"
+                src="https://i.postimg.cc/763Hgbcn/d3-smart-gate-machine.jpg"
                 alt="Gate Automation"
                 fill
                 className="object-cover group-hover:scale-110 transition-all duration-1000 opacity-80 group-hover:opacity-100"
@@ -225,15 +234,15 @@ export default function Home() {
               className="md:col-span-12 lg:col-span-8 relative group overflow-hidden border border-white/5"
             >
               <Image
-                src="/images/door-elite.png"
-                alt="Security Doors"
+                src="https://i.postimg.cc/3wXHQmS1/bollards.jpg"
+                alt="Security Bollards"
                 fill
                 className="object-cover group-hover:scale-105 transition-all duration-1000 opacity-80 group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-linos-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity" />
               <div className="absolute bottom-10 left-10">
-                <span className="text-linos-gold text-[9px] font-bold uppercase tracking-widest block mb-2">Security Doors & Access</span>
-                <h3 className="text-2xl font-bold text-white uppercase tracking-wider">Biometric & <br /> High-Security Entry Points</h3>
+                <span className="text-linos-gold text-[9px] font-bold uppercase tracking-widest block mb-2">Vehicle Access Control</span>
+                <h3 className="text-2xl font-bold text-white uppercase tracking-wider">Anti-Ram <br /> High-Security Defense</h3>
               </div>
             </motion.div>
           </div>
@@ -251,32 +260,32 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
             {[
               {
-                name: "5kVA Hybrid Solar Inverter",
-                cat: "Power Systems",
-                img: "https://i.postimg.cc/Jz69jvpM/1-5-KWzhutu2-800-800.jpg",
-                href: "/products/super-home-5kva-48v-hybrid-inverter"
+                name: "Digital Door Lock",
+                cat: "Security Hardware",
+                img: "https://i.postimg.cc/8cBM7pND/Digital-door-lock.jpg",
+                href: "/products/digital-door-lock"
               },
               {
-                name: "D10 Turbo SMΔRT Gate",
+                name: "Centurion D10 Smart",
                 cat: "Automation",
                 img: "https://i.postimg.cc/763Hgbcn/d3-smart-gate-machine.jpg",
                 href: "/products/d10-turbo-smart-gate-opener"
               },
               {
-                name: "4K AI Surveillance Pack",
+                name: "4K Surveillance Node",
                 cat: "Surveillance",
-                img: "https://i.postimg.cc/nrbRBh7H/G3-Hikvision-4k-8mp-Ip-Camera-Colorvu-Ds-2cd2387g3-li2uy-Acusense-3-0-Dual-Mic.jpg",
-                href: "/products/v380-standalone-wifi-camera"
+                img: "https://i.postimg.cc/L69FKJL3/droplets-cctv-installaton-in-port-harcourt-ip-cameras-hikvision-cameras-8-channel-CCTV-system-plus-i.jpg",
+                href: "/shop?category=cctv"
               },
               {
-                name: "Biometric Facial Terminal",
-                cat: "Access Control",
-                img: "https://i.postimg.cc/cJnfx4wP/face-n-finger.jpg",
-                href: "/products/zkteco-vf780-face-palm-reader"
+                name: "Bollard Defense System",
+                cat: "Defense",
+                img: "https://i.postimg.cc/3wXHQmS1/bollards.jpg",
+                href: "/products/fixed-security-bollards"
               }
             ].map((p, i) => (
               <Link key={i} href={p.href} className="bg-linos-black p-10 hover:bg-linos-gold/[0.03] transition-colors group">
-                <div className="aspect-square relative mb-8 overflow-hidden bg-white/[0.02]">
+                <div className="aspect-square relative mb-8 overflow-hidden bg-white/[0.02] border border-white/10 p-2">
                   <Image
                     src={p.img}
                     alt={p.name}

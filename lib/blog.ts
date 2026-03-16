@@ -1,20 +1,35 @@
-import postsData from '@/data/posts.json';
+import postsData from '@/data/blogPosts.json';
+
+export interface BlogFAQ {
+    question: string;
+    answer: string;
+}
+
+export interface InternalLink {
+    text: string;
+    href: string;
+}
 
 export interface BlogPost {
-    slug: string;
     title: string;
-    excerpt: string;
-    date: string;
+    slug: string;
+    metaTitle: string;
+    metaDescription: string;
+    focusKeyword: string;
+    secondaryKeywords: string[];
     author: string;
-    readTime: string;
+    publishDate: string;
+    coverImage: string;
     content: string;
-    image?: string;
+    faq?: BlogFAQ[];
+    internalLinks?: InternalLink[];
+    schemaType: string;
 }
 
 export const getAllPosts = (): BlogPost[] => {
-    return postsData.posts;
+    return postsData.posts as BlogPost[];
 };
 
 export const getPostBySlug = (slug: string): BlogPost | undefined => {
-    return postsData.posts.find((p) => p.slug === slug);
+    return (postsData.posts as BlogPost[]).find((p) => p.slug === slug);
 };

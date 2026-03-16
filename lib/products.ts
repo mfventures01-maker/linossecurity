@@ -1,40 +1,39 @@
 import productsData from '@/data/products.json';
 import { Product } from '@/types/product';
+import { PRICE_API, RemoteProduct } from './pricing';
 
 /**
- * Robust product fetching with null safety and error handling
+ * Robust product fetching with dynamic pricing from Google Apps Script
  */
 export async function getProducts(): Promise<Product[]> {
     try {
-        const url = process.env.GOOGLE_SHEETS_PRODUCT_URL;
-        if (!url) {
-            console.warn('⚠️ Missing GOOGLE_SHEETS_PRODUCT_URL, falling back to local data');
-            return getLocalProducts();
-        }
+        // Fetch base product metadata (categories, descriptions, etc)
+        const localProducts = getLocalProducts();
 
-        // Add timeout and error handling
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000);
-
-        const response = await fetch(`${url}?path=products`, {
-            signal: controller.signal,
-            next: { revalidate: 300 }
+        // Fetch live pricing from Google Apps Script
+        const pricingRes = await fetch(PRICE_API, {
+            next: { revalidate: 3600 } // ISR for 1 hour
         });
 
-        clearTimeout(timeoutId);
+        if (pricingRes.ok) {
+            const pricingData = await pricingRes.json();
+            const remotePrices: RemoteProduct[] = pricingData.products || [];
 
-        if (!response.ok) {
-            console.error(`❌ HTTP error! Status: ${response.status}`);
-            return getLocalProducts();
+            // Merge prices into local metadata
+            return localProducts.map(p => {
+                const match = remotePrices.find(rp => rp.id === p.product_slug);
+                if (match) {
+                    return { ...p, price: String(match.price), availability: match.availability || 'in-stock' };
+                }
+                return p;
+            });
         }
 
-        const data = await response.json();
-        const products = Array.isArray(data) ? data : (data.products || []);
-        return validateProducts(products);
+        return localProducts;
 
     } catch (error) {
-        console.error('Error fetching products:', error);
-        return getLocalProducts(); // Always return fallback on error
+        console.error('Error fetching products or prices:', error);
+        return getLocalProducts();
     }
 }
 
@@ -48,7 +47,7 @@ function getLocalProducts(): Product[] {
 function validateProducts(products: any[]): Product[] {
     return (products || []).map(p => {
         const name = p?.name || p?.product || p?.product_name || 'Unnamed Product';
-        const price = p?.price || p?.['price_(₦)'] || 'Call for Quote';
+        const price = p?.price || 'Get Quote';
         const slug = p?.product_slug || p?.slug || '';
         const image = p?.photo_url || p?.image || '';
 
@@ -63,7 +62,9 @@ function validateProducts(products: any[]): Product[] {
             slug: slug,
             photo_url: image,
             image: image,
-            description: p?.description || ''
+            description: p?.description || '',
+            meta_title: p?.meta_title || `${name} | Linos Security Nigeria`,
+            meta_description: p?.meta_description || p?.description?.substring(0, 160)
         };
     }).filter(p => p.product_slug);
 }

@@ -146,6 +146,24 @@ export default function ContactPage() {
                 </div>
 
                 <div className="mt-40">
+                    <div className="space-y-8 mb-16">
+                        <span className="text-linos-gold text-[10px] font-bold uppercase tracking-[0.5em]">Global Positioning</span>
+                        <h2 className="text-4xl md:text-6xl font-display font-bold text-white uppercase italic">Our <span className="text-linos-gold">Abuja Hub</span>.</h2>
+                    </div>
+                    <div className="w-full h-[500px] border border-white/10 grayscale filter hover:grayscale-0 transition-all duration-700 bg-white/[0.02]">
+                        <iframe
+                            src={BUSINESS_DETAILS.googleMapsEmbed}
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </div>
+                </div>
+
+                <div className="mt-40">
                     <WorkSlider />
                 </div>
             </div>
