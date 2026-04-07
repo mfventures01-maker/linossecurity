@@ -87,10 +87,10 @@ export default function Footer() {
                         © 2026 LINOS E SECURITY LIMITED. ALL RIGHTS RESERVED.
                     </p>
                     <div className="flex items-center space-x-6">
-                        <div className="flex items-center space-x-2 text-white/20">
-                            <ShieldCheck className="w-4 h-4 text-linos-gold" />
-                            <span className="text-[10px] uppercase font-bold tracking-widest">Certified Security Infrastructure</span>
-                        </div>
+                        <Link href="/admin/blog" className="flex items-center space-x-2 text-white/20 hover:text-linos-gold cursor-pointer transition-colors group">
+                            <ShieldCheck className="w-4 h-4 text-linos-gold group-hover:scale-110 transition-transform" />
+                            <span className="text-[10px] uppercase font-bold tracking-widest group-hover:text-linos-gold">Certified Security Infrastructure</span>
+                        </Link>
 
                         {/* Admin Portal Button */}
                         <Link
