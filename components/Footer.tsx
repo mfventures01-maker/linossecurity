@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ShieldCheck } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ShieldCheck, Lock } from 'lucide-react';
 import { BUSINESS_DETAILS } from '@/config/business';
 
 export default function Footer() {
@@ -9,23 +9,34 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                     {/* Brand */}
-                    <div className="space-y-6">
-                        <Link href="/" className="flex items-center space-x-3">
-                            <div className="relative w-12 h-12 bg-linos-gold rounded-full flex items-center justify-center p-2 shadow-lg shadow-linos-gold/20 flex-shrink-0">
-                                <Image src="/logo.png" alt="Linos Logo" width={30} height={30} className="object-contain" unoptimized />
+                    <div className="space-y-8">
+                        <div className="space-y-6">
+                            <Link href="/" className="flex items-center space-x-3">
+                                <div className="relative w-12 h-12 bg-linos-gold rounded-full flex items-center justify-center p-2 shadow-lg shadow-linos-gold/20 flex-shrink-0">
+                                    <Image src="/logo.png" alt="Linos Logo" width={30} height={30} className="object-contain" unoptimized />
+                                </div>
+                                <span className="text-xl font-display font-bold text-white tracking-widest leading-none">LINOS E</span>
+                            </Link>
+                            <p className="text-white/40 text-sm leading-relaxed">
+                                {BUSINESS_DETAILS.name} — Nigeria’s trusted authority in security automation and technology infrastructure. Providing elite protection for corporate and residential assets.
+                            </p>
+                            <div className="flex space-x-4">
+                                {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
+                                    <a key={i} href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white/40 hover:text-linos-gold hover:bg-white/10 transition-all">
+                                        <Icon className="w-4 h-4" />
+                                    </a>
+                                ))}
                             </div>
-                            <span className="text-xl font-display font-bold text-white tracking-widest leading-none">LINOS E</span>
-                        </Link>
-                        <p className="text-white/40 text-sm leading-relaxed">
-                            {BUSINESS_DETAILS.name} — Nigeria’s trusted authority in security automation and technology infrastructure. Providing elite protection for corporate and residential assets.
-                        </p>
-                        <div className="flex space-x-4">
-                            {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                                <a key={i} href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white/40 hover:text-linos-gold hover:bg-white/10 transition-all">
-                                    <Icon className="w-4 h-4" />
-                                </a>
-                            ))}
                         </div>
+
+                        {/* Admin Link */}
+                        <Link
+                            href="/admin/login"
+                            className="inline-flex items-center space-x-3 px-6 py-3 bg-white/[0.03] border border-white/5 rounded-xl text-white/20 hover:text-linos-gold hover:border-linos-gold/30 transition-all group"
+                        >
+                            <Lock className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Secure Admin Terminal</span>
+                        </Link>
                     </div>
 
                     {/* Quick Links */}
